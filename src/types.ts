@@ -19,7 +19,7 @@ export interface SelectQuestion extends BaseQuestion {
   options: string[];
 }
 export interface DragDropQuestion extends BaseQuestion {
-  type: "mcq";
+  type: "drag";
   options: string[];
 }
 
@@ -29,4 +29,3 @@ export type Question =
   | SelectQuestion
   | DragDropQuestion
 
-  
