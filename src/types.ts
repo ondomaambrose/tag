@@ -1,0 +1,32 @@
+export type QuestionType = "mcq" | "fill" | "select" | "drag";
+
+export interface BaseQuestion {
+  id: number;
+  type: QuestionType;
+  question: string;
+  answer: string;
+}
+
+export interface MCQQuestion extends BaseQuestion {
+  type: "mcq";
+  options: string[];
+}
+export interface FillQuestion extends BaseQuestion {
+  type: "fill";
+}
+export interface SelectQuestion extends BaseQuestion {
+  type: "select";
+  options: string[];
+}
+export interface DragDropQuestion extends BaseQuestion {
+  type: "mcq";
+  options: string[];
+}
+
+export type Question =
+  | MCQQuestion
+  | FillQuestion
+  | SelectQuestion
+  | DragDropQuestion
+
+  
