@@ -41,11 +41,11 @@ export function LevelSection() {
       >
         {levels.map((level) => (
           <Link
+            key={level}
             to={`/${level.replace(" ", "-").toLowerCase()}`}
             className="text-white text-2xl font-semibold w-full h-full flex items-center justify-center"
           >
             <motion.div
-              key={level}
               className="
               w-full h-24 flex items-center justify-center
               text-white text-2xl font-semibold
