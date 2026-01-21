@@ -1,38 +1,6 @@
-export type QuestionType =
-  | "mcq"
-  | "true_false"
-  | "fill_in"
-  | "matching"
-  | "drag_drop"
-  | "mixed";
+import type { Question } from "../types";
 
-export interface QuestionField {
-  fieldType: "fill_in" | "select";
-  placeholder?: string;
-  prompt?: string;
-  options?: string[];
-  answer: string;
-}
-
-export interface QuestionPair {
-  hook: string;
-  purpose: string;
-}
-
-export interface Question {
-  id: number;
-  type: QuestionType;
-  question: string;
-  options?: string[];
-  answer?: string | boolean;
-  pairs?: QuestionPair[];
-  items?: string[];
-  targets?: string[];
-  answers?: string[];
-  fields?: QuestionField[];
-}
-
-export const questions: Question[] = [
+export const dld111Questions: Question[] = [
   {
     id: 1,
     type: "mcq",
@@ -2383,3 +2351,7 @@ export const questions: Question[] = [
     ],
   },
 ];
+
+export const courseQuestionMap: Record<string, Question[]> = {
+  "DLD 111": dld111Questions,
+};

@@ -1,6 +1,4 @@
-import type { Quotes } from "../types";
-
-export const quotes: Quotes[] = [
+export const quotes = [
   {
     id: 1,
     quote: "Life is not a funfair, life is a warfare",

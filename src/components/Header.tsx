@@ -4,7 +4,7 @@ import tag from "../assets/tag.png";
 
 export function Header() {
   return (
-    <header className="bg-white text-orange-500 p-10 flex items-center flex-col">
+    <header className="bg-white text-orange-500 p-7 flex items-center flex-col">
       <Link to="/">
         <h1>
           <motion.img
