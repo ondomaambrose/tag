@@ -16,7 +16,7 @@ export function QuoteSection() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
           >
-            <article className="max-w-lg p-6 bg-white/5 border border-white/10 rounded-xl text-white text-lg italic">
+            <article className="max-w-lg p-6 bg-white/5 border border-white/10 rounded-xl text-white text-lg italic ">
               <p>“{item.quote}”</p>
               <p className="mt-3 text-sm font-semibold text-orange-400">
                 — {item.author}

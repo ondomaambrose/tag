@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export function LevelSection() {
   const levels = [
@@ -23,6 +24,7 @@ export function LevelSection() {
       </motion.p>
 
       {/* Levels */}
+
       <motion.div
         className="w-full max-w-4xl mx-auto flex flex-col"
         initial="hidden"
@@ -38,21 +40,26 @@ export function LevelSection() {
         }}
       >
         {levels.map((level) => (
-          <motion.div
-            key={level}
-            className="
+          <Link
+            to={`/${level.replace(" ", "-").toLowerCase()}`}
+            className="text-white text-2xl font-semibold w-full h-full flex items-center justify-center"
+          >
+            <motion.div
+              key={level}
+              className="
               w-full h-24 flex items-center justify-center
               text-white text-2xl font-semibold
               border-b border-white/10 cursor-pointer
               last:border-b-0 hover:bg-orange-500
             "
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            {level}
-          </motion.div>
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ amount: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              {level}
+            </motion.div>
+          </Link>
         ))}
       </motion.div>
     </section>
