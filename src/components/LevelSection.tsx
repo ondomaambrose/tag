@@ -16,7 +16,7 @@ export function LevelSection() {
         className="font-sans text-orange-500 text-2xl font-bold text-center"
         initial={{ y: -50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }} // Animate when in viewport
-        viewport={{ once: true, amount: 0.5 }} // Trigger once, when 50% visible
+        viewport={{ amount: 0.5 }} // Trigger once, when 50% visible
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         Stay Ahead Of The New ALDC Exam Structure
@@ -27,7 +27,7 @@ export function LevelSection() {
         className="w-full max-w-4xl mx-auto flex flex-col"
         initial="hidden"
         whileInView="visible" // Animate when visible
-        viewport={{ once: true, amount: 0.3 }} // Trigger once, when 30% visible
+        viewport={{ amount: 0.3 }} // Trigger once, when 30% visible
         variants={{
           hidden: {},
           visible: {
@@ -43,12 +43,12 @@ export function LevelSection() {
             className="
               w-full h-24 flex items-center justify-center
               text-white text-2xl font-semibold
-              border-b border-white/10
+              border-b border-white/10 cursor-pointer
               last:border-b-0 hover:bg-orange-500
             "
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             {level}

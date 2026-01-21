@@ -7,12 +7,12 @@ export interface BaseQuestion {
   answer: string;
 }
 
-export type Quotes {
+export type Quotes = {
   id: number;
   quote: string;
   author: string;
   forfun: string;
-}
+};
 
 export interface MCQQuestion extends BaseQuestion {
   type: "mcq";
