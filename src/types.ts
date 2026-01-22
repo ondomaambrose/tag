@@ -23,8 +23,9 @@ export interface Question {
   id: number;
   type: QuestionType;
   question: string;
-  options?: string[]; // For MCQ / Select
+  options: string[]; // For MCQ / Select
   answer?: string | boolean; // For MCQ / T/F / Fill
+  correctAnswer?: string | boolean; // For backward compatibility
   pairs?: QuestionPair[]; // For Matching
   items?: string[]; // For DragDrop
   targets?: string[]; // For DragDrop

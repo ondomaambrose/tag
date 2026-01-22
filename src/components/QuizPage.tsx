@@ -57,16 +57,18 @@ export const QuizPage = () => {
   if (questions.length === 0) {
     return (
       <div className="p-10 text-center">
-        <h2 className="text-2xl font-bold text-gray-700">No Questions Found</h2>
+        <h2 className="text-2xl font-bold text-orange-600">
+          No Questions Found
+        </h2>
         <p className="mt-2 text-gray-500">
           The quiz for <strong>{courseId}</strong> hasn't been uploaded to the
           database yet.
         </p>
         <button
-          onClick={() => navigate("/courses")}
+          onClick={() => navigate("/")}
           className="mt-6 px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg font-medium transition-colors"
         >
-          Back to Courses
+          Back to Home
         </button>
       </div>
     );

@@ -1,5 +1,5 @@
-// src/components/ExamKit.tsx
 import React, { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react"; // Import icons for mobile menu
 import type { Question } from "../types";
 import { ExamFooter } from "./ExamFooter";
 import { QuestionCard } from "./QuestionCard";
@@ -8,6 +8,7 @@ import { ExamResults } from "./ExamResult";
 import { FlagSidebar } from "./FlagSidebar";
 import { ExamHeader } from "./ExamHeader";
 import { ProgressBar } from "./ProgressBar";
+import { ExamReview } from "./ExamReview";
 
 interface ExamKitProps {
   questions: Question[];
@@ -36,37 +37,34 @@ export const ExamKit: React.FC<ExamKitProps> = ({
   >({});
   const [showResults, setShowResults] = useState(false);
 
-  // --- Filter questions based on segment
+  // Mobile Sidebar State
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
+  // Review State
+  const [isReviewing, setIsReviewing] = useState(false);
+
   const filteredQuestions = selectedSegment
     ? questions.slice(selectedSegment.start, selectedSegment.end + 1)
     : questions;
 
   const currentQuestion = filteredQuestions[currentIndex];
 
-  // --- Fixed Timer Logic ---
+  // --- Timer Logic ---
   useEffect(() => {
-    // Only run if exam has started and there is a time limit
     if (!examStarted || timeLeft === null) return;
-
     const interval = setInterval(() => {
       setTimeLeft((prevTime) => {
-        // 1. Guard clause: Handle the null case explicitly
         if (prevTime === null) return null;
-
-        // 2. Handle expiration
         if (prevTime <= 1) {
           clearInterval(interval);
-          setShowResults(true); // Auto-submit when time is up
+          setShowResults(true);
           return 0;
         }
-
-        // 3. Decrement
         return prevTime - 1;
       });
     }, 1000);
-
     return () => clearInterval(interval);
-  }, [examStarted]);
+  }, [examStarted, timeLeft]);
 
   // --- Handlers ---
   const handleAnswer = (val: any) =>
@@ -79,41 +77,64 @@ export const ExamKit: React.FC<ExamKitProps> = ({
     }));
 
   const handleSubmitEarly = () => {
-    if (window.confirm("Are you sure you want to submit your exam early?")) {
+    const unansweredCount = filteredQuestions.reduce((count, q) => {
+      const ans = userAnswers[q.id];
+      let isAnswered = false;
+      if (ans === undefined || ans === null || ans === "") {
+        isAnswered = false;
+      } else if (typeof ans === "object") {
+        isAnswered = Object.keys(ans).length > 0;
+      } else {
+        isAnswered = true;
+      }
+      return isAnswered ? count : count + 1;
+    }, 0);
+
+    let message = "Are you sure you want to submit your exam?";
+    if (unansweredCount > 0) {
+      message = `You have ${unansweredCount} unanswered question${unansweredCount === 1 ? "" : "s"}. Are you sure you want to finish early?`;
+    }
+
+    if (window.confirm(message)) {
       setShowResults(true);
     }
   };
 
   const calculateScore = () => {
     let score = 0;
+    const normalize = (val: any) =>
+      String(val || "")
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, " ");
+
     filteredQuestions.forEach((q) => {
       const uAns = userAnswers[q.id];
-      if (!uAns) return;
+      if (uAns === undefined || uAns === null || uAns === "") return;
 
-      // Normalization helper for string comparisons
-      const normalize = (val: any) => String(val).toLowerCase().trim();
-
-      if (q.type === "mcq" || q.type === "true_false" || q.type === "fill_in") {
+      if (q.type === "mcq" || q.type === "true_false") {
+        if (normalize(uAns) === normalize(q.answer)) score++;
+      } else if (q.type === "fill_in") {
         if (normalize(uAns) === normalize(q.answer)) score++;
       } else if (q.type === "matching") {
-        const allCorrect = q.pairs?.every((p) => uAns[p.hook] === p.purpose);
-        if (allCorrect) score++;
+        if (q.pairs?.every((p) => uAns[p.hook] === p.purpose)) score++;
       } else if (q.type === "drag_drop") {
-        const allCorrect = q.answers?.every(
-          (ans, idx) => uAns[q.targets![idx]] === ans,
-        );
-        if (allCorrect) score++;
+        if (q.answers?.every((ans, idx) => uAns[q.targets![idx]] === ans))
+          score++;
       } else if (q.type === "mixed") {
-        const allCorrect = q.fields?.every(
-          (field, idx) => normalize(uAns[idx]) === normalize(field.answer),
-        );
-        if (allCorrect) score++;
+        if (
+          q.fields?.every(
+            (field, idx) => normalize(uAns[idx]) === normalize(field.answer),
+          )
+        )
+          score++;
       }
     });
     return score;
   };
 
-  // --- Pre-exam segment selection
+  // --- RENDER SECTIONS ---
+
   if (!examStarted) {
     return (
       <SegmentSelection
@@ -123,22 +144,28 @@ export const ExamKit: React.FC<ExamKitProps> = ({
         selectedSegment={selectedSegment}
         setSelectedSegment={setSelectedSegment}
         startExam={() => {
-          // Default to all questions if none selected
           const segment = selectedSegment || {
             start: 0,
             end: questions.length - 1,
           };
           if (!selectedSegment) setSelectedSegment(segment);
-
           setExamStarted(true);
-          // Initialize timer if set (convert minutes to seconds)
           if (timer) setTimeLeft(timer * 60);
         }}
       />
     );
   }
 
-  // --- Show Results Component
+  if (isReviewing) {
+    return (
+      <ExamReview
+        questions={filteredQuestions}
+        userAnswers={userAnswers}
+        onExit={() => setIsReviewing(false)}
+      />
+    );
+  }
+
   if (showResults) {
     return (
       <ExamResults
@@ -147,26 +174,24 @@ export const ExamKit: React.FC<ExamKitProps> = ({
         title={title}
         selectedSegment={selectedSegment}
         questions={questions}
+        onReview={() => setIsReviewing(true)}
         retakeSegment={() => {
           setShowResults(false);
           setCurrentIndex(0);
           setUserAnswers({});
           setFlaggedQuestions({});
-          // Reset timer if it exists
           if (timer) setTimeLeft(timer * 60);
         }}
         takeNextSegment={() => {
           if (!selectedSegment) return;
           const newStart = selectedSegment.end + 1;
-          // Check if we have more questions
           if (newStart >= questions.length) {
             alert("You have completed all questions!");
             return;
           }
-
           const newSeg = {
             start: newStart,
-            end: Math.min(newStart + 49, questions.length - 1), // Assuming 50 batch size
+            end: Math.min(newStart + 49, questions.length - 1),
           };
           setSelectedSegment(newSeg);
           setCurrentIndex(0);
@@ -179,10 +204,10 @@ export const ExamKit: React.FC<ExamKitProps> = ({
     );
   }
 
-  // --- Exam Page Layout
+  // --- MAIN RENDER ---
   return (
-    <div className="max-w-5xl mx-auto mt-10 p-4 font-sans flex flex-col md:flex-row gap-6">
-      {/* Sidebar for navigation */}
+    <div className="max-w-5xl mx-auto mt-4 md:mt-10 p-4 font-sans flex flex-col md:flex-row gap-6 relative">
+      {/* 1. DESKTOP SIDEBAR (Hidden on mobile) */}
       <div className="hidden md:block">
         <FlagSidebar
           flaggedQuestions={flaggedQuestions}
@@ -193,6 +218,42 @@ export const ExamKit: React.FC<ExamKitProps> = ({
         />
       </div>
 
+      {/* 2. MOBILE SIDEBAR DRAWER (Visible when toggled) */}
+      {isMobileSidebarOpen && (
+        <div className="fixed inset-0 z-50 flex md:hidden">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+            onClick={() => setIsMobileSidebarOpen(false)}
+          />
+
+          {/* Slide-out Panel */}
+          <div className="relative w-4/5 max-w-xs bg-white h-full shadow-2xl p-4 overflow-y-auto animate-in slide-in-from-left duration-300">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="font-bold text-gray-800 text-lg">Question Map</h3>
+              <button
+                onClick={() => setIsMobileSidebarOpen(false)}
+                className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 text-gray-600"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <FlagSidebar
+              flaggedQuestions={flaggedQuestions}
+              filteredQuestions={filteredQuestions}
+              currentIndex={currentIndex}
+              userAnswers={userAnswers}
+              setCurrentIndex={(idx) => {
+                setCurrentIndex(idx);
+                setIsMobileSidebarOpen(false); // Close drawer on selection
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* MAIN CONTENT */}
       <div className="flex-1">
         <ExamHeader
           title={title}
@@ -222,6 +283,15 @@ export const ExamKit: React.FC<ExamKitProps> = ({
           handleSubmitEarly={handleSubmitEarly}
         />
       </div>
+
+      {/* 3. MOBILE TOGGLE BUTTON (Floating Action Button) */}
+      <button
+        onClick={() => setIsMobileSidebarOpen(true)}
+        className="md:hidden fixed bottom-6 right-6 z-40 bg-orange-600 text-white p-4 rounded-full shadow-lg hover:bg-orange-700 hover:scale-105 transition-all flex items-center justify-center"
+        aria-label="Open Question Map"
+      >
+        <Menu size={24} />
+      </button>
     </div>
   );
 };

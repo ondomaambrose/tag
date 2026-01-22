@@ -1,4 +1,6 @@
-import { CheckCircle, RefreshCcw } from "lucide-react";
+// src/components/ExamResult.tsx
+import React from "react";
+import { RotateCcw, ArrowRight, BookOpen } from "lucide-react";
 import type { Question } from "../types";
 
 interface ExamResultsProps {
@@ -9,72 +11,95 @@ interface ExamResultsProps {
   questions: Question[];
   retakeSegment: () => void;
   takeNextSegment: () => void;
+  onReview: () => void; // <--- ADDED PROP
 }
 
 export const ExamResults: React.FC<ExamResultsProps> = ({
   score,
   total,
   title,
-  selectedSegment,
-  questions,
   retakeSegment,
   takeNextSegment,
+  onReview,
 }) => {
   const percentage = Math.round((score / total) * 100);
-  const hasNextSegment =
-    selectedSegment && selectedSegment.end < questions.length - 1;
+  let gradeColor = "text-red-600";
+  let gradeText = "Keep Practicing";
+
+  if (percentage >= 80) {
+    gradeColor = "text-green-600";
+    gradeText = "Excellent!";
+  } else if (percentage >= 60) {
+    gradeColor = "text-blue-600";
+    gradeText = "Good Job";
+  }
 
   return (
-    <div className="max-w-xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden mt-10 border border-gray-100">
-      <div
-        className={`${percentage >= 50 ? "bg-green-600" : "bg-red-500"} p-10 text-center text-white`}
-      >
-        {percentage >= 50 ? (
-          <CheckCircle className="w-20 h-20 mx-auto mb-4" />
-        ) : (
-          <RefreshCcw className="w-20 h-20 mx-auto mb-4" />
-        )}
-        <h2 className="text-4xl font-bold mb-2">
-          {percentage >= 50 ? "Great Job!" : "Keep Practicing"}
-        </h2>
-        <p className="opacity-90 font-medium">You completed {title}</p>
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-[60vh] p-6 text-center max-w-2xl mx-auto">
+      <div className="bg-white rounded-3xl shadow-xl p-8 w-full border border-gray-100">
+        <h2 className="text-3xl font-bold text-gray-800 mb-2">{title}</h2>
+        <p className="text-gray-500 mb-8">Assessment Complete</p>
 
-      <div className="p-8">
-        <div className="flex justify-center items-end gap-2 mb-6">
-          <span className="text-6xl font-bold text-gray-900">{score}</span>
-          <span className="text-xl text-gray-400 font-medium mb-2">
-            / {total}
-          </span>
+        <div className="relative inline-flex items-center justify-center mb-8">
+          <svg className="w-40 h-40 transform -rotate-90">
+            <circle
+              className="text-gray-100"
+              strokeWidth="12"
+              stroke="currentColor"
+              fill="transparent"
+              r="70"
+              cx="80"
+              cy="80"
+            />
+            <circle
+              className={gradeColor}
+              strokeWidth="12"
+              strokeDasharray={440}
+              strokeDashoffset={440 - (440 * percentage) / 100}
+              strokeLinecap="round"
+              stroke="currentColor"
+              fill="transparent"
+              r="70"
+              cx="80"
+              cy="80"
+            />
+          </svg>
+          <div className="absolute flex flex-col items-center">
+            <span className={`text-4xl font-black ${gradeColor}`}>
+              {percentage}%
+            </span>
+            <span className="text-sm text-gray-400 font-medium">
+              {score} / {total}
+            </span>
+          </div>
         </div>
 
-        <div className="w-full bg-gray-100 rounded-full h-4 mb-2 overflow-hidden">
-          <div
-            className={`${percentage >= 60 ? "bg-green-500" : "bg-red-500"} h-full rounded-full transition-all duration-1000 ease-out`}
-            style={{ width: `${percentage}%` }}
-          />
-        </div>
-        <p className="text-center text-gray-500 mb-8 font-medium">
-          {percentage}% Score
-        </p>
+        <h3 className={`text-2xl font-bold ${gradeColor} mb-8`}>{gradeText}</h3>
 
-        <div className="space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <button
-            onClick={retakeSegment}
-            className="w-full flex justify-center items-center gap-2 px-6 py-3.5 border-2 border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-colors font-semibold"
+            onClick={onReview}
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-xl font-semibold hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 col-span-1 sm:col-span-2"
           >
-            <RefreshCcw size={20} />
-            Retake This Segment
+            <BookOpen size={20} />
+            Review Answers
           </button>
 
-          {hasNextSegment && (
-            <button
-              onClick={takeNextSegment}
-              className="w-full px-6 py-4 bg-orange-600 text-white rounded-xl hover:bg-orange-700 shadow-lg shadow-orange-200 transition-all font-bold"
-            >
-              Start Next Segment
-            </button>
-          )}
+          <button
+            onClick={retakeSegment}
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-xl font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all"
+          >
+            <RotateCcw size={20} />
+            Retake
+          </button>
+
+          <button
+            onClick={takeNextSegment}
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-md hover:shadow-lg"
+          >
+            Next Section
+            <ArrowRight size={20} />
+          </button>
         </div>
       </div>
     </div>
