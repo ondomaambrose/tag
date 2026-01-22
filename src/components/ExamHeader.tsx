@@ -31,10 +31,10 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
   return (
     <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+        <h1 className="text-2xl font-bold text-orange-600">{title}</h1>
         <p className="text-gray-500 text-sm mt-1 font-medium">
-          Question <span className="text-gray-900">{currentIndex + 1}</span> of{" "}
-          {totalQuestions}
+          Question <span className="text-orange-600">{currentIndex + 1}</span>{" "}
+          of {totalQuestions}
         </p>
       </div>
       <div className="flex gap-3 items-center w-full sm:w-auto">

@@ -36,7 +36,7 @@ export const DragDropQuestion: React.FC<{
             onClick={() => setSelectedItem(selectedItem === item ? null : item)}
             className={`px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all ${
               selectedItem === item
-                ? "bg-blue-600 text-white ring-2 ring-blue-300"
+                ? "bg-orange-600 text-white ring-2 ring-orange-300"
                 : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
             }`}
           >
@@ -56,7 +56,7 @@ export const DragDropQuestion: React.FC<{
             onClick={() => handleTargetClick(target)}
             className={`border-2 border-dashed rounded-xl p-4 flex flex-col items-center justify-center min-h- cursor-pointer transition-colors ${
               currentPlacement[target]
-                ? "border-blue-500 bg-blue-50"
+                ? "border-orange-500 bg-orange-50"
                 : "border-gray-300 hover:bg-gray-50"
             }`}
           >
@@ -64,7 +64,7 @@ export const DragDropQuestion: React.FC<{
               {target}
             </span>
             {currentPlacement[target] ? (
-              <span className="px-3 py-1 bg-white border border-blue-200 text-blue-700 rounded-md shadow-sm font-medium">
+              <span className="px-3 py-1 bg-white border border-orange-200 text-orange-700 rounded-md shadow-sm font-medium">
                 {currentPlacement[target]}
               </span>
             ) : (

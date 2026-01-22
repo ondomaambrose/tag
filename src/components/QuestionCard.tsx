@@ -24,7 +24,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       <div className="p-6 md:p-10">
         {/* --- FIX 1: RENDER THE QUESTION TEXT HERE --- */}
         <div className="mb-8">
-          <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
+          <span className="inline-block px-3 py-1 bg-orange-50 text-orange-700 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
             {question.type.replace("_", " ")}
           </span>
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 leading-relaxed">

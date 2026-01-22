@@ -41,6 +41,14 @@ export const dld111Questions: Question[] = [
         hook: "Leadership is not an appointment",
         purpose: "It is an attainment",
       },
+      {
+        hook: "Leadership is not an endowment",
+        purpose: "It cannot be inherited",
+      },
+      {
+        hook: "Leadership is not a barrage of titles",
+        purpose: "It's about leaving footprints on the sand of time",
+      },
     ],
   },
   {
@@ -48,7 +56,7 @@ export const dld111Questions: Question[] = [
     type: "drag_drop",
     question:
       "Drag the areas of effective management into the correct categories.",
-    items: ["Emotions/Character", "Planning/Execution", "Strategic Allocation"],
+    items: ["Planning/Execution", "Strategic Allocation", "Emotions/Character"],
     targets: ["Self", "Task", "Time"],
     answers: [
       "Emotions/Character",
@@ -62,9 +70,9 @@ export const dld111Questions: Question[] = [
     question:
       "What concept describes the brain's ability to rewire itself through experience?",
     options: [
-      "Neuroplasticity",
       "Psychosomatics",
       "Neurology",
+      "Neuroplasticity",
       "Cognitive Dissonance",
     ],
     answer: "Neuroplasticity",
@@ -88,7 +96,7 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question:
       "Which of the following is NOT an area of management mentioned in the definition of leadership?",
-    options: ["Politics", "Self", "Task", "Time"],
+    options: ["Self", "Task", "Time", "Politics"],
     answer: "Politics",
   },
   {
@@ -110,7 +118,7 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "...but in the _____ we bear.",
-        options: ["values", "crowns", "robes"],
+        options: ["crowns", "values", "robes", "empathy"],
         answer: "values",
       },
     ],
@@ -120,8 +128,8 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "According to the lectures, what is the 'Growth Mindset'?",
     options: [
-      "Believing abilities can be developed",
       "Believing intelligence is static",
+      "Believing abilities can be developed",
       "Focusing on physical growth",
       "Focusing on financial growth",
     ],
@@ -156,11 +164,10 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 16,
-    type: "drag_drop",
-    question: "Order the progression of mastery mentioned in the intro.",
-    items: ["Knowledge", "Confidence", "Skill"],
-    targets: ["Step 1", "Step 2", "Step 3"],
-    answers: ["Knowledge", "Confidence", "Skill"],
+    type: "fill_in",
+    question:
+      "The 2015-2019 El Savador president under whose leadership homicude rate of his country dropped by 90% is ___________",
+    answer: "Nayib Bukele",
   },
   {
     id: 17,
@@ -193,7 +200,7 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question:
       "Which biblical figure was used as an example of a leader who rose to power in Egypt?",
-    options: ["Joseph", "Moses", "David", "Paul"],
+    options: ["Moses", "David", "Joseph", "Paul"],
     answer: "Joseph",
   },
   {
@@ -208,6 +215,14 @@ export const dld111Questions: Question[] = [
       {
         hook: "Deborah",
         purpose: "Judge and prophetess",
+      },
+      {
+        hook: "Moses",
+        purpose: "Lead the Israelites",
+      },
+      {
+        hook: "Paul",
+        purpose: "Led many to Christ",
       },
     ],
   },
@@ -229,14 +244,14 @@ export const dld111Questions: Question[] = [
     id: 24,
     type: "mcq",
     question: "What does 'Imago Dei' mean?",
-    options: ["Image of God", "Voice of God", "Love of God", "Power of God"],
+    options: ["Voice of God", "Image of God", "Love of God", "Power of God"],
     answer: "Image of God",
   },
   {
     id: 25,
     type: "drag_drop",
     question: "Categorize the components of Justice.",
-    items: ["Fair processes", "Equitable outcomes"],
+    items: ["Equitable outcomes", "Fair processes"],
     targets: ["Procedural Justice", "Distributive Justice"],
     answers: ["Fair processes", "Equitable outcomes"],
   },
@@ -285,7 +300,7 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question:
       "Who was the founder of Theranos mentioned as a negative case study?",
-    options: ["Elizabeth Holmes", "Steve Jobs", "Elon Musk", "Sheryl Sandberg"],
+    options: ["Steve Jobs", "Elon Musk", "Elizabeth Holmes", "Sheryl Sandberg"],
     answer: "Elizabeth Holmes",
   },
   {
@@ -304,7 +319,7 @@ export const dld111Questions: Question[] = [
         fieldType: "select",
         prompt:
           "Choose the principle defined by 'Consistency between stated values and actual behaviour'.",
-        options: ["Integrity", "Innovation", "Strategy"],
+        options: ["Integrity", "Innovation", "Strategy", "Obedience"],
         answer: "Integrity",
       },
       {
@@ -320,7 +335,7 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question:
       "What is the study of moral principles that govern behaviour called?",
-    options: ["Ethics", "Psychology", "Sociology", "Economics"],
+    options: ["Psychology", "Sociology", "Ethics", "Economics"],
     answer: "Ethics",
   },
   {
@@ -338,25 +353,23 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 36,
-    type: "drag_drop",
-    question: "Match the Hebrew terms to their meanings.",
-    items: ["Mishpat", "Tsedaqah"],
-    targets: ["Justice", "Righteousness"],
-    answers: ["Mishpat", "Tsedaqah"],
+    type: "fill_in",
+    question: "The Hebrew term Tseqadah means _______",
+    answer: "Righteousness",
   },
   {
     id: 37,
     type: "mcq",
     question:
       "Which of these is NOT a Fruit of the Spirit mentioned in ethical frameworks?",
-    options: ["Ambition", "Love", "Peace", "Self-Control"],
+    options: ["Meekness", "Love", "Peace", "Ambition", "Self-Control"],
     answer: "Ambition",
   },
   {
     id: 38,
     type: "fill_in",
-    question: "_____ is strength properly directed.",
-    answer: "Humility",
+    question: "_____ means justice in Hebrew.",
+    answer: "mishpat",
   },
   {
     id: 39,
@@ -385,8 +398,8 @@ export const dld111Questions: Question[] = [
     question:
       "What is defined as 'the ability to influence others to make decisions that enhance long-term success'?",
     options: [
-      "Strategic Leadership",
       "Operational Management",
+      "Strategic Leadership",
       "Autocratic Leadership",
       "Transactional Leadership",
     ],
@@ -438,7 +451,7 @@ export const dld111Questions: Question[] = [
     id: 46,
     type: "drag_drop",
     question: "Order the steps of communicating through change.",
-    items: ["WHY", "WHAT", "HOW"],
+    items: ["WHAT", "WHY", "HOW"],
     targets: ["First Explanation", "Second Explanation", "Third Explanation"],
     answers: ["WHY", "WHAT", "HOW"],
   },
@@ -453,10 +466,10 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "Which principle involves 'Leveraging Collective Intelligence'?",
     options: [
-      "Collaboration & Empowerment",
       "Vision & Direction",
       "Performance Measurement",
       "Change Leadership",
+      "Collaboration & Empowerment",
     ],
     answer: "Collaboration & Empowerment",
   },
@@ -468,13 +481,8 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "Repetition creates _____.",
-        options: ["understanding", "boredom", "confusion"],
+        options: ["boredom", "understanding", "confusion", "wisdom"],
         answer: "understanding",
-      },
-      {
-        fieldType: "fill_in",
-        placeholder: "Simple enough for everyone to _____.",
-        answer: "understand",
       },
     ],
   },
@@ -501,24 +509,16 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 53,
-    type: "matching",
-    question: "Match the vision dimension to its description.",
-    pairs: [
-      {
-        hook: "Foresight",
-        purpose: "Seeing beyond current circumstances",
-      },
-      {
-        hook: "Divine Insight",
-        purpose: "God unveiling His purposes",
-      },
-    ],
+    type: "fill_in",
+    question:
+      "Strategic leaders create and communicate a clear, compelling ______ for the future",
+    answer: "vision",
   },
   {
     id: 54,
     type: "mcq",
     question: "According to Lecture 3, only the _____ can inspire.",
-    options: ["Inspired", "Educated", "Wealthy", "Powerful"],
+    options: ["Educated", "Wealthy", "Powerful", "Inspired"],
     answer: "Inspired",
   },
   {
@@ -531,7 +531,12 @@ export const dld111Questions: Question[] = [
     id: 56,
     type: "drag_drop",
     question: "Drag the correct terms to the formula.",
-    items: ["Divine Purpose", "Divine Revelation"],
+    items: [
+      "Divine Purpose",
+      "Divide Leading",
+      "Divine Revelation",
+      "Divine Love",
+    ],
     targets: ["Source", "Outcome"],
     answers: ["Divine Purpose", "Divine Revelation"],
   },
@@ -575,7 +580,7 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question:
       "According to James Allen, 'The world steps aside for the man who knows _____'.",
-    options: ["Where he is going", "How to fight", "How to speak", "Who he is"],
+    options: ["How to fight", "Where he is going", "How to speak", "Who he is"],
     answer: "Where he is going",
   },
   {
@@ -594,8 +599,8 @@ export const dld111Questions: Question[] = [
     id: 64,
     type: "drag_drop",
     question: "Identify the types of justice.",
-    items: ["Procedural", "Distributive"],
-    targets: ["Process-based", "Outcome-based"],
+    items: ["Sequential", "Procedural", "Distributive"],
+    targets: ["Fair Processes", "Outcome-based"],
     answers: ["Procedural", "Distributive"],
   },
   {
@@ -606,7 +611,7 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "Innovation distinguishes between a leader and a _____.",
-        options: ["follower", "manager", "boss"],
+        options: ["Servant", "manager", "follower", "boss"],
         answer: "follower",
       },
       {
@@ -622,9 +627,9 @@ export const dld111Questions: Question[] = [
     question: "What is the 'Leadership Amplifier Effect'?",
     options: [
       "Leaders' influence amplifies the impact of their choices",
-      "Leaders speak louder than others",
-      "Leaders use microphones",
-      "Leaders occupy more space",
+      "Leaders construct compelling visions to influence others",
+      "Leaders dedicate resources to support others to work towards a goal",
+      "Leaders occupy positions to gain influence and conections and amplify chances",
     ],
     answer: "Leaders' influence amplifies the impact of their choices",
   },
@@ -638,21 +643,29 @@ export const dld111Questions: Question[] = [
     id: 68,
     type: "fill_in",
     question:
-      "The Golden Rule states: 'Do to others what you would have them do to _____.'",
-    answer: "you",
+      "The ______ Rule states: 'Do to others what you would have them do to you.'",
+    answer: "Golden",
   },
   {
     id: 69,
     type: "matching",
-    question: "Match the biblical principle to its meaning.",
+    question: "Match the biblical principle to a related term.",
     pairs: [
       {
         hook: "Integrity",
-        purpose: "Alignment Principle",
+        purpose: "The Alignment principle",
       },
       {
         hook: "Servant Leadership",
         purpose: "The Jesus Model",
+      },
+      {
+        hook: "Human Dignity",
+        purpose: "Imago Dei",
+      },
+      {
+        hook: "Justice and Righteousness",
+        purpose: "Mishpat and Tsedaqah",
       },
     ],
   },
@@ -661,9 +674,9 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "Which of these is a component of leadership integrity?",
     options: [
-      "Keeping Commitments",
       "Hiding mistakes",
       "Manipulation",
+      "Keeping Commitments",
       "Deception",
     ],
     answer: "Keeping Commitments",
@@ -682,11 +695,10 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 73,
-    type: "drag_drop",
-    question: "Sort the elements of The Great Commandment.",
-    items: ["Love God", "Love Neighbor"],
-    targets: ["First Command", "Second Command"],
-    answers: ["Love God", "Love Neighbor"],
+    type: "mcq",
+    question: "Which of these is not a Pillar of biblical leadership.",
+    options: ["Vision", "Stewardship", "Service", "Influence"],
+    answer: "Vision",
   },
   {
     id: 74,
@@ -760,8 +772,8 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "What happens when you have a 'Fixed Mindset'?",
     options: [
-      "Limits potential",
       "Enables growth",
+      "Limits potential",
       "Increases intelligence",
       "Expands skills",
     ],
@@ -771,7 +783,7 @@ export const dld111Questions: Question[] = [
     id: 82,
     type: "drag_drop",
     question: "Classify the leadership traits.",
-    items: ["Vision", "Operational Excellence"],
+    items: ["Vision", "High Ranking", "Operational Excellence"],
     targets: ["Strategic", "Managerial"],
     answers: ["Vision", "Operational Excellence"],
   },
@@ -804,16 +816,30 @@ export const dld111Questions: Question[] = [
         purpose: "Repeat core messages",
       },
       {
-        hook: "Keep it Simple",
+        hook: "Be Clear",
         purpose: "Understandable for everyone",
+      },
+      {
+        hook: "Contextually Adapted",
+        purpose: "Tailored to soecific audiences",
+      },
+      {
+        hook: "Two-way",
+        purpose: "Listening as well as speaking",
+      },
+      {
+        hook: "Multi-Channel",
+        purpose: "Various mediums(spoken,written,visual)",
       },
     ],
   },
   {
     id: 87,
-    type: "fill_in",
-    question: "Empowerment multiplies your _____.",
-    answer: "impact",
+    type: "mcq",
+    question:
+      "A good objective of leadership is to help those who are doing pooorly to do well and to help those who are doing well to even do better - _________",
+    options: ["John Quincy Adams", "Jim Rohn", "Steve Jobs", "Dr Azu"],
+    answer: "Jim Rohn",
   },
   {
     id: 88,
@@ -852,10 +878,10 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "Which principle is about 'Turning Strategy into Reality'?",
     options: [
-      "Alignment of People & Resources",
       "Vision & Direction",
       "Innovation",
       "Ethics",
+      "Alignment of People & Resources",
     ],
     answer: "Alignment of People & Resources",
   },
@@ -873,24 +899,22 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 94,
-    type: "matching",
-    question: "Match the term to its definition.",
-    pairs: [
-      {
-        hook: "Transparency",
-        purpose: "Open communication",
-      },
-      {
-        hook: "Accountability",
-        purpose: "Taking responsibility",
-      },
+    type: "mcq",
+    question:
+      "Proverbs 25:11 and  Habakkuk 2:2 are associated with which qualities of a visionary leader",
+    options: [
+      "Clear Vision",
+      "Long-Term Focus",
+      "Communication",
+      "Inspiration",
     ],
+    answer: "Communication",
   },
   {
     id: 95,
     type: "drag_drop",
     question: "Order the steps of the 'Path to Mastery'.",
-    items: ["Knowledge", "Confidence", "Skill", "Victory"],
+    items: ["Skill", "Knowledge", "Victory", "Confidence"],
     targets: ["1", "2", "3", "4"],
     answers: ["Knowledge", "Confidence", "Skill", "Victory"],
   },
@@ -918,10 +942,10 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "What is the 'Two-in-One Package' mentioned in the intro?",
     options: [
-      "Character + Competence",
       "Money + Power",
       "Skill + Luck",
       "Friends + Family",
+      "Character + Competence",
     ],
     answer: "Character + Competence",
   },
@@ -939,7 +963,7 @@ export const dld111Questions: Question[] = [
         fieldType: "select",
         prompt:
           "If anything significant comes out of your life, it will be because of _____.",
-        options: ["leadership", "luck", "hope"],
+        options: ["mercy", "leadership", "luck", "hope"],
         answer: "leadership",
       },
     ],
@@ -961,32 +985,33 @@ export const dld111Questions: Question[] = [
   {
     id: 103,
     type: "fill_in",
-    question:
-      "Justice (Mishpat) includes Procedural justice and _____ justice.",
+    question: "Justice includes Procedural justice and _____ justice.",
     answer: "Distributive",
   },
   {
     id: 104,
-    type: "matching",
-    question: "Match the biblical leader to their role.",
-    pairs: [
-      {
-        hook: "Moses",
-        purpose: "Led Israel from Egypt",
-      },
-      {
-        hook: "Daniel",
-        purpose: "Served foreign kings",
-      },
-    ],
+    type: "fill_in",
+    question:
+      "Trust in the LORD with all your heart and lean on your own understanding - ______ 3:5 (Type the Book of the bible)",
+    answer: "Proverbs",
   },
   {
     id: 105,
     type: "drag_drop",
-    question: "Identify the core biblical principles.",
-    items: ["Servant Leadership", "Justice"],
-    targets: ["Principle 2", "Principle 3"],
-    answers: ["Servant Leadership", "Justice"],
+    question: "Match the Frameworks to their corresponding bible verse",
+    items: ["Luke 16:10", "Gal 5:22-23", "Proverbs 3:5", "Mathhew 7:12"],
+    targets: [
+      "Stewardship Test",
+      "The Fruit of the Spirit Test",
+      "The Wisdom Test",
+      "The Golden Rule Test",
+    ],
+    answers: [
+      "Stewardship Test",
+      "The Fruit of the Spirit Test",
+      "The Wisdom Test",
+      "The Golden Rule Test",
+    ],
   },
   {
     id: 106,
@@ -1010,9 +1035,9 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 108,
-    type: "fill_in",
-    question: "Integrity involves consistency in _____ and private.",
-    answer: "public",
+    type: "true_false",
+    question: "Integrity involves consistency in public and private.",
+    answer: true,
   },
   {
     id: 109,
@@ -1044,9 +1069,9 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "Who said 'I have a dream'?",
     options: [
-      "Martin Luther King Jr.",
       "Malcolm X",
       "Nelson Mandela",
+      "Martin Luther King Jr.",
       "Barack Obama",
     ],
     answer: "Martin Luther King Jr.",
@@ -1082,7 +1107,7 @@ export const dld111Questions: Question[] = [
     id: 115,
     type: "drag_drop",
     question: "Order the steps of vision to action.",
-    items: ["Break down vision", "Create objectives", "Connect daily work"],
+    items: ["Create objectives", "Break down vision", "Connect daily work"],
     targets: ["Step 1", "Step 2", "Step 3"],
     answers: ["Break down vision", "Create objectives", "Connect daily work"],
   },
@@ -1114,7 +1139,7 @@ export const dld111Questions: Question[] = [
     id: 119,
     type: "mcq",
     question: "What is the art of message mastery?",
-    options: ["Strategic Communication", "Public Speaking", "Debate", "Gossip"],
+    options: ["Public Speaking", "Debate", "Strategic Communication", "Gossip"],
     answer: "Strategic Communication",
   },
   {
@@ -1141,9 +1166,9 @@ export const dld111Questions: Question[] = [
     question:
       "Which principle suggests 'Saying no to non-strategic activities'?",
     options: [
-      "Alignment of People & Resources",
       "Vision",
       "Innovation",
+      "Alignment of People & Resources",
       "Communication",
     ],
     answer: "Alignment of People & Resources",
@@ -1157,8 +1182,8 @@ export const dld111Questions: Question[] = [
   {
     id: 123,
     type: "fill_in",
-    question: "Efficiency is about doing things _____.",
-    answer: "right",
+    question: "Universal Potential + Individual Investment = _________",
+    answer: "Star Performance",
   },
   {
     id: 124,
@@ -1260,6 +1285,10 @@ export const dld111Questions: Question[] = [
         hook: "Risk-taking",
         purpose: "Willing to take calculated risks",
       },
+      {
+        hook: "Sacrifice",
+        purpose: "Will to take a bullet for others",
+      },
     ],
   },
   {
@@ -1300,7 +1329,7 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question:
       "Which bible verse mentions the trumpet giving an uncertain sound?",
-    options: ["1 Cor 14:8", "John 3:16", "Psalm 23", "Gen 1:1"],
+    options: ["John 3:16", "Psalm 23", "1 Cor 14:8", "Gen 1:1"],
     answer: "1 Cor 14:8",
   },
   {
@@ -1360,7 +1389,7 @@ export const dld111Questions: Question[] = [
     id: 145,
     type: "drag_drop",
     question: "Classify the source of inspiration.",
-    items: ["Divine Source", "Human Effort"],
+    items: ["Human Effort", "Divine Source"],
     targets: ["True Inspiration", "Mere Motivation"],
     answers: ["Divine Source", "Human Effort"],
   },
@@ -1368,7 +1397,7 @@ export const dld111Questions: Question[] = [
     id: 146,
     type: "mcq",
     question: "Innovation involves thinking creatively with what?",
-    options: ["New ideas", "Old habits", "Strict rules", "No plan"],
+    options: ["Old habits", "New ideas", "Strict rules", "No plan"],
     answer: "New ideas",
   },
   {
@@ -1387,7 +1416,7 @@ export const dld111Questions: Question[] = [
     id: 149,
     type: "mcq",
     question: "Which proverb says 'I wisdom dwell with prudence'?",
-    options: ["Proverbs 8:12", "Proverbs 29:18", "Psalm 1:1", "Proverbs 3:5"],
+    options: ["Proverbs 29:18", "Psalm 1:1", "Proverbs 8:12", "Proverbs 3:5"],
     answer: "Proverbs 8:12",
   },
   {
@@ -1446,11 +1475,13 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 155,
-    type: "drag_drop",
-    question: "Contrast the focuses.",
-    items: ["Who to be", "What to do"],
-    targets: ["Character", "Technique"],
-    answers: ["Who to be", "What to do"],
+    type: "mcq",
+    question: "Which option best describes Luke 14:28-29",
+    options: [
+      "Bless the LORD always, Vision guides a leaders path, Eagles are destined for greatness",
+      "Count the cost before the beginning",
+    ],
+    answer: "Count the cost before the beginning",
   },
   {
     id: 156,
@@ -1477,8 +1508,8 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "What is the problem with 'expert' opinions on leadership?",
     options: [
-      "Leaders still fail spectacularly",
       "They are too expensive",
+      "Leaders still fail spectacularly",
       "They are too short",
       "They are too old",
     ],
@@ -1502,6 +1533,7 @@ export const dld111Questions: Question[] = [
       },
     ],
   },
+  //Stopped here
   {
     id: 161,
     type: "mcq",
@@ -1524,15 +1556,15 @@ export const dld111Questions: Question[] = [
   {
     id: 164,
     type: "matching",
-    question: "Match the description to the person.",
+    question: "Match the description according the the lecture note",
     pairs: [
       {
-        hook: "Elizabeth Holmes",
-        purpose: "Theranos Founder",
+        hook: "Vision Without STRATEGY",
+        purpose: "Dream",
       },
       {
-        hook: "Steve Jobs",
-        purpose: "Apple Founder",
+        hook: "Strategy with VISION",
+        purpose: "Aimless planning",
       },
     ],
   },
@@ -1540,7 +1572,7 @@ export const dld111Questions: Question[] = [
     id: 165,
     type: "drag_drop",
     question: "Order the events of Theranos.",
-    items: ["Hype", "Deception", "Collapse"],
+    items: ["Deception", "Hype", "Collapse"],
     targets: ["Start", "Middle", "End"],
     answers: ["Hype", "Deception", "Collapse"],
   },
@@ -1549,9 +1581,9 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "What does 'Imago Dei' imply for leadership?",
     options: [
-      "Valuing people",
       "Using people",
       "Ignoring people",
+      "Valuing people",
       "Controlling people",
     ],
     answer: "Valuing people",
@@ -1572,7 +1604,7 @@ export const dld111Questions: Question[] = [
     id: 169,
     type: "mcq",
     question: "Which principle emphasizes 'Fair processes'?",
-    options: ["Justice", "Mercy", "Humility", "Love"],
+    options: ["Mercy", "Humility", "Love", "Justice"],
     answer: "Justice",
   },
   {
@@ -1583,7 +1615,7 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "Uses power to _____ rather than dominate.",
-        options: ["serve", "control", "hurt"],
+        options: ["control", "imply", "serve", "hurt"],
         answer: "serve",
       },
       {
@@ -1598,8 +1630,8 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "What is the 'Golden Rule' found in Matthew 7:12?",
     options: [
-      "Do to others what you would have them do to you",
       "Survival of the fittest",
+      "Do to others what you would have them do to you",
       "Eye for an eye",
       "Love is blind",
     ],
@@ -1614,7 +1646,7 @@ export const dld111Questions: Question[] = [
   {
     id: 173,
     type: "fill_in",
-    question: "Short-term unethical gains destroy _____ success.",
+    question: "Short-term unethical gains, destroy _____ success.",
     answer: "long-term",
   },
   {
@@ -1623,6 +1655,10 @@ export const dld111Questions: Question[] = [
     question: "Match the pillar of ethical leadership.",
     pairs: [
       {
+        hook: "Accountability",
+        purpose: "Taking Responsibility for actions",
+      },
+      {
         hook: "Honesty",
         purpose: "Truthfulness",
       },
@@ -1630,13 +1666,22 @@ export const dld111Questions: Question[] = [
         hook: "Fairness",
         purpose: "Equitable treatment",
       },
+      {
+        hook: "Transparency",
+        purpose: "Open Communication about decisions",
+      },
     ],
   },
   {
     id: 175,
     type: "drag_drop",
     question: "Classify the outcomes.",
-    items: ["Trust evaporates", "Sustainable success"],
+    items: [
+      "Lifes are damned",
+      "Trust evaporates",
+      "Sustainable success",
+      "Lives are blessed",
+    ],
     targets: ["Unethical", "Ethical"],
     answers: ["Trust evaporates", "Sustainable success"],
   },
@@ -1663,8 +1708,8 @@ export const dld111Questions: Question[] = [
     id: 179,
     type: "mcq",
     question: "Which of these is NOT a Great Commandment?",
-    options: ["Love money", "Love God", "Love neighbour", "None of the above"],
-    answer: "Love money",
+    options: ["Love nature", "Love God", "Love neighbour", "None of the above"],
+    answer: "Love nature",
   },
   {
     id: 180,
@@ -1689,10 +1734,10 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "What is the primary goal of DLD111 Lecture 1?",
     options: [
+      "Success parameters",
       "Redefine Leadership",
-      "Teach Math",
-      "Teach History",
-      "Teach Science",
+      "Structure Organizations",
+      "Teach Management",
     ],
     answer: "Redefine Leadership",
   },
@@ -1761,10 +1806,10 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "What defines a great leader according to the lectures?",
     options: [
-      "Changing the world",
       "Chains of degrees",
       "Big office",
       "Nice car",
+      "Changing the world",
     ],
     answer: "Changing the world",
   },
@@ -1776,7 +1821,7 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "Outstanding leaders leave footprints on the _____.",
-        options: ["sands of time", "concrete", "water"],
+        options: ["minds of men", "sands of time", "concrete", "water"],
         answer: "sands of time",
       },
       {
@@ -1838,9 +1883,9 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "Which of these is NOT an inheritance fallacy example?",
     options: [
-      "Learned skills",
       "Royal heirs",
       "Business dynasties",
+      "Learned skills",
       "Political families",
     ],
     answer: "Learned skills",
@@ -1872,18 +1917,23 @@ export const dld111Questions: Question[] = [
   {
     id: 200,
     type: "mixed",
-    question: "Professor B vs Professor A:",
+    question: "Complete the definition:",
     fields: [
       {
-        fieldType: "select",
-        prompt: "Professor B left a legacy that endures _____.",
-        options: ["forever", "briefly", "never"],
-        answer: "forever",
+        fieldType: "fill_in",
+        prompt: "_______ leadership is the ability to influence others to",
+        answer: "strategic",
       },
       {
         fieldType: "fill_in",
-        placeholder: "Professor A was _____ after retirement.",
-        answer: "forgotten",
+        placeholder:
+          "make _______ that enhance an organization's long-term success, while managing change, uncertainty and",
+        answer: "decisions",
+      },
+      {
+        fieldType: "fill_in",
+        placeholder: "limited _______.",
+        answer: "resources",
       },
     ],
   },
@@ -1916,8 +1966,16 @@ export const dld111Questions: Question[] = [
         purpose: "Moses",
       },
       {
-        hook: "Rose to power",
+        hook: "Rose to power in Egypt",
         purpose: "Joseph",
+      },
+      {
+        hook: "Rebuilt Jerusalem's walls",
+        purpose: "Nehemiah",
+      },
+      {
+        hook: "Served Foreign Kings",
+        purpose: "Daniel",
       },
     ],
   },
@@ -1932,8 +1990,8 @@ export const dld111Questions: Question[] = [
   {
     id: 206,
     type: "mcq",
-    question: "What is the 'Fruit of the Spirit' test based on?",
-    options: ["Galatians 5:22-23", "John 3:16", "Genesis 1:1", "Psalm 23"],
+    question: "Which scripture is the 'Fruit of the Spirit' test based on?",
+    options: ["John 3:16", "Galatians 5:22-23", "Genesis 1:1", "Psalm 23"],
     answer: "Galatians 5:22-23",
   },
   {
@@ -1945,14 +2003,14 @@ export const dld111Questions: Question[] = [
   {
     id: 208,
     type: "fill_in",
-    question: "Am I exercising appropriate _____?",
-    answer: "self-control",
+    question: "Without leadership  you'll  _____ in the ocean of life?",
+    answer: "drown",
   },
   {
     id: 209,
     type: "mcq",
     question: "Which test involves 'Advocacy for the Vulnerable'?",
-    options: ["Justice", "Stewardship", "Efficiency", "Profit"],
+    options: ["Stewardship", "Efficiency", "Profit", "Justice"],
     answer: "Justice",
   },
   {
@@ -1963,7 +2021,7 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "Procedural justice is about _____ processes.",
-        options: ["fair", "fast", "cheap"],
+        options: ["fair", "fast", "cheap", "structural"],
         answer: "fair",
       },
       {
@@ -1989,8 +2047,8 @@ export const dld111Questions: Question[] = [
   {
     id: 213,
     type: "fill_in",
-    question: "Righteousness involves alignment with God’s _____.",
-    answer: "standards",
+    question: "_________ involves alignment with God's standars.",
+    answer: "Righteousness",
   },
   {
     id: 214,
@@ -2009,23 +2067,22 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 215,
-    type: "drag_drop",
-    question: "Classify the virtue.",
-    items: ["Procedural Fairness", "Moral Integrity"],
-    targets: ["Justice", "Righteousness"],
-    answers: ["Procedural Fairness", "Moral Integrity"],
+    type: "true_false",
+    question:
+      "Stakeholder Awareness is a principle of Strategic Leadership as in Lecture 4",
+    answer: true,
   },
   {
     id: 216,
     type: "mcq",
     question: "Which is NOT a modern ethical challenge mentioned?",
     options: [
-      "Too much sleep",
       "Pressure to achieve results",
       "Conflicts between interests",
+      "Social media influence",
       "Moral relativism",
     ],
-    answer: "Too much sleep",
+    answer: "Social media influence",
   },
   {
     id: 217,
@@ -2060,7 +2117,7 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "For leaders, ethics is not abstract _____.",
-        options: ["philosophy", "art", "science"],
+        options: ["technology", "philosophy", "art", "science"],
         answer: "philosophy",
       },
       {
@@ -2109,7 +2166,7 @@ export const dld111Questions: Question[] = [
     id: 225,
     type: "drag_drop",
     question: "Sort the horizon.",
-    items: ["Today", "Tomorrow"],
+    items: ["Yesterday", "Today", "The latter", "Tomorrow"],
     targets: ["Operational", "Strategic"],
     answers: ["Today", "Tomorrow"],
   },
@@ -2137,9 +2194,9 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "Which of these is a big picture question?",
     options: [
-      "How do market trends affect us?",
       "What is for lunch?",
       "Where is the pen?",
+      "How do market trends affect us?",
       "Who is late?",
     ],
     answer: "How do market trends affect us?",
@@ -2152,7 +2209,7 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "Don't predict, _____.",
-        options: ["prepare", "panic", "play"],
+        options: ["prepare", "pressure", "panic", "play"],
         answer: "prepare",
       },
       {
@@ -2167,9 +2224,9 @@ export const dld111Questions: Question[] = [
     type: "mcq",
     question: "What is the 'Alignment Challenge'?",
     options: [
-      "Great strategy, poor execution",
       "Poor strategy, good execution",
       "No strategy, no execution",
+      "Great strategy, poor execution",
       "Perfect alignment",
     ],
     answer: "Great strategy, poor execution",
@@ -2177,14 +2234,14 @@ export const dld111Questions: Question[] = [
   {
     id: 232,
     type: "true_false",
-    question: "Silos prevent coordination.",
+    question: "Self Awareness can be learned.",
     answer: true,
   },
   {
     id: 233,
     type: "fill_in",
-    question: "Every person must understand their _____.",
-    answer: "contribution",
+    question: "Who wrote Emotional Intelligence?",
+    answer: "Daniel Goleman",
   },
   {
     id: 234,
@@ -2205,7 +2262,7 @@ export const dld111Questions: Question[] = [
     id: 235,
     type: "drag_drop",
     question: "Order the problem resolution.",
-    items: ["Silos", "Coordination", "Alignment"],
+    items: ["Silos", "Alignment", "Coordination"],
     targets: ["Problem", "Action", "Goal"],
     answers: ["Silos", "Coordination", "Alignment"],
   },
@@ -2225,8 +2282,9 @@ export const dld111Questions: Question[] = [
   {
     id: 238,
     type: "fill_in",
-    question: "Ethical decision-making builds sustainable _____ advantage.",
-    answer: "competitive",
+    question:
+      "______ decision-making builds sustainable competitive advantage.",
+    answer: "Ethical",
   },
   {
     id: 239,
@@ -2243,12 +2301,12 @@ export const dld111Questions: Question[] = [
       {
         fieldType: "select",
         prompt: "Reputation is _____ by unethical behavior.",
-        options: ["destroyed", "built", "enhanced"],
+        options: ["Siphoned", "destroyed", "built", "enhanced"],
         answer: "destroyed",
       },
       {
         fieldType: "fill_in",
-        placeholder: "Trust _____.",
+        placeholder: "'Trust _____ when integrity is absent'?",
         answer: "evaporates",
       },
     ],
@@ -2256,8 +2314,8 @@ export const dld111Questions: Question[] = [
   {
     id: 241,
     type: "mcq",
-    question: "What question addresses 'Who kind of person should I be?'",
-    options: ["Ethics", "Finance", "Marketing", "IT"],
+    question: "What question addresses 'WhICH kind of person should I be?'",
+    options: ["Finance", "Ethics", "Marketing", "IT"],
     answer: "Ethics",
   },
   {
@@ -2292,9 +2350,9 @@ export const dld111Questions: Question[] = [
     id: 245,
     type: "drag_drop",
     question: "Sort the concepts.",
-    items: ["Dominion", "Service"],
-    targets: ["Creation Mandate", "Jesus Model"],
-    answers: ["Dominion", "Service"],
+    items: ["Dominion", "Service", "Humility"],
+    targets: ["Creation Mandate", "Learn", "Jesus Model"],
+    answers: ["Dominion", "Humility", "Service"],
   },
   {
     id: 246,
@@ -2323,7 +2381,8 @@ export const dld111Questions: Question[] = [
   {
     id: 249,
     type: "mcq",
-    question: "What is the key takeaway from the 'Professor Example'?",
+    question:
+      "What is the key takeaway from the 'Professor Example' in lecture note one?",
     options: [
       "Legacy matters more than titles",
       "Titles are everything",
@@ -2334,21 +2393,11 @@ export const dld111Questions: Question[] = [
   },
   {
     id: 250,
-    type: "mixed",
-    question: "Final Review:",
-    fields: [
-      {
-        fieldType: "select",
-        prompt: "Leadership is about making a _____ difference.",
-        options: ["positive", "negative", "neutral"],
-        answer: "positive",
-      },
-      {
-        fieldType: "fill_in",
-        placeholder: "Serving God and _____.",
-        answer: "others",
-      },
-    ],
+    type: "mcq",
+    question:
+      "A word fitly spoken is like apples of gold in pictures of silver",
+    options: ["Proverbs 25:11", "John 3:16", "Habbakuk 2:2", "Proverbs 25:13"],
+    answer: "Proverbs 25:11",
   },
 ];
 

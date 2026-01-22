@@ -51,7 +51,7 @@ export const ExamFooter: React.FC<ExamFooterProps> = ({
               Math.min(filteredQuestions.length - 1, prev + 1),
             )
           }
-          className="flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all font-bold hover:translate-y-px"
+          className="flex items-center gap-2 px-8 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 shadow-lg shadow-orange-200 transition-all font-bold hover:translate-y-px"
         >
           Next
           <ChevronRight size={20} />

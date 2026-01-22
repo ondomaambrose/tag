@@ -24,7 +24,8 @@ export const FlagSidebar: React.FC<FlagSidebarProps> = ({
         const isCurrent = idx === currentIndex;
 
         let bgClass = "bg-gray-100 text-gray-600 hover:bg-gray-200";
-        if (isCurrent) bgClass = "bg-blue-600 text-white ring-2 ring-blue-300";
+        if (isCurrent)
+          bgClass = "bg-orange-600 text-white ring-2 ring-orange-300";
         else if (isFlagged) bgClass = "bg-yellow-400 text-yellow-900";
         else if (isAnswered)
           bgClass = "bg-green-100 text-green-700 border border-green-200";
@@ -43,7 +44,7 @@ export const FlagSidebar: React.FC<FlagSidebarProps> = ({
 
     <div className="mt-6 pt-4 border-t border-gray-100 space-y-2 text-xs text-gray-500 font-medium">
       <div className="flex items-center gap-2">
-        <div className="w-3 h-3 bg-blue-600 rounded"></div> Current
+        <div className="w-3 h-3 bg-orange-600 rounded"></div> Current
       </div>
       <div className="flex items-center gap-2">
         <div className="w-3 h-3 bg-green-100 border border-green-200 rounded"></div>{" "}

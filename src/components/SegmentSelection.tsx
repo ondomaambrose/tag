@@ -28,9 +28,9 @@ export const SegmentSelection: React.FC<SegmentSelectionProps> = ({
   }
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl border border-gray-100">
+    <div className="max-w-2xl mx-auto mt-10 p-8 bg-black rounded-2xl shadow-xl border border-orange-300">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-orange-500 mb-2">
           Welcome to the Exam
         </h1>
         <p className="text-gray-500">Customize your session below</p>
@@ -38,7 +38,7 @@ export const SegmentSelection: React.FC<SegmentSelectionProps> = ({
 
       <div className="space-y-6">
         <div>
-          <label className="block mb-3 font-semibold text-gray-700">
+          <label className="block mb-3 font-semibold text-white">
             1. Select Question Block
           </label>
           <div className="grid grid-cols-2 gap-3">
@@ -48,8 +48,8 @@ export const SegmentSelection: React.FC<SegmentSelectionProps> = ({
                 onClick={() => setSelectedSegment(seg)}
                 className={`px-4 py-3 rounded-lg text-sm font-medium transition-all border ${
                   selectedSegment?.start === seg.start
-                    ? "bg-blue-600 text-white border-blue-600 shadow-md ring-2 ring-blue-200"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:bg-blue-50"
+                    ? "bg-orange-600 text-white border-orange-600 shadow-md ring-2 ring-orange-200"
+                    : "bg-white text-gray-600 border-orange-200 hover:border-orange-300 hover:bg-orange-50"
                 }`}
               >
                 Questions {seg.start + 1} - {seg.end + 1}
@@ -62,8 +62,8 @@ export const SegmentSelection: React.FC<SegmentSelectionProps> = ({
               className={`px-4 py-3 rounded-lg text-sm font-medium transition-all border col-span-2 ${
                 selectedSegment?.end === totalQuestions - 1 &&
                 selectedSegment.start === 0
-                  ? "bg-green-600 text-white border-green-600 shadow-md"
-                  : "bg-white text-green-700 border-green-200 hover:bg-green-50"
+                  ? "bg-orange-600 text-white border-orange-600 shadow-md"
+                  : "bg-white text-orange-700 border-orange-200 hover:bg-orange-50"
               }`}
             >
               Take Full Exam ({totalQuestions} Questions)
@@ -72,7 +72,7 @@ export const SegmentSelection: React.FC<SegmentSelectionProps> = ({
         </div>
 
         <div>
-          <label className="block mb-3 font-semibold text-gray-700">
+          <label className="block mb-3 font-semibold text-white">
             2. Set Timer (Minutes)
           </label>
           <input
@@ -83,16 +83,16 @@ export const SegmentSelection: React.FC<SegmentSelectionProps> = ({
             onChange={(e) =>
               setTimer(e.target.value ? Number(e.target.value) : null)
             }
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+            className="w-full p-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none transition-all text-white"
           />
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-white mt-1">
             Leave empty for no time limit
           </p>
         </div>
 
         <button
           onClick={startExam}
-          className="w-full py-4 bg-gray-900 text-white rounded-xl font-bold text-lg hover:bg-gray-800 transition-transform active:scale-[0.98] shadow-lg"
+          className="w-full py-4 bg-orange-600 text-white rounded-xl font-bold text-lg hover:bg-orange-800 transition-transform active:scale-[0.98] shadow-lg"
         >
           Start Exam
         </button>

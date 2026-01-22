@@ -15,10 +15,10 @@ export function LevelPage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-black text-white p-10 flex flex-col items-center gap-6">
+      <div className="min-h-screen bg-black text-white p-10 flex flex-col items-center gap-10 overflow-x-hidden">
         <h1 className="text-3xl font-bold text-orange-500">{displayLevel}</h1>
 
-        <div className="flex grid-cols-2 gap-10">
+        <div className=" grid-cols-1 gap-20 ">
           {levelCourses.length === 0 ? (
             <p className="text-white/70 italic">
               No courses found for this level.
@@ -27,14 +27,14 @@ export function LevelPage() {
             levelCourses.map((course) => (
               <article
                 key={course.code}
-                className="max-w-lg p-6 bg-white/5 border border-white/10 rounded-xl text-white text-lg italic hover"
+                className="max-w-lg p-6 bg-white/5 border border-white/10 rounded-xl text-white text-lg italic hover mb-10"
               >
                 <h2 className="text-xl font-bold text-center mb-4">
                   {course.code} - {course.title}
                 </h2>
                 <p className="line-clamp-5">{course.description}</p>
 
-                <div className="flex flex-col sm:flex-row gap-3 mt-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-5 mt-4 justify-center">
                   <Link
                     to={`/courses/${course.code}/quiz`}
                     className="px-4 py-2 bg-orange-500 text-black font-semibold rounded hover:bg-orange-600 transition text-center"
@@ -46,12 +46,6 @@ export function LevelPage() {
                     className="px-4 py-2 bg-orange-500 text-black font-semibold rounded hover:bg-orange-600 transition text-center"
                   >
                     Flash Cards
-                  </Link>
-                  <Link
-                    to={`/courses/${course.code}/quotes`}
-                    className="px-4 py-2 bg-orange-500 text-black font-semibold rounded hover:bg-orange-600 transition text-center"
-                  >
-                    Quotes & Scriptures
                   </Link>
                 </div>
               </article>

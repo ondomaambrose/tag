@@ -50,7 +50,7 @@ export const ExamResults: React.FC<ExamResultsProps> = ({
 
         <div className="w-full bg-gray-100 rounded-full h-4 mb-2 overflow-hidden">
           <div
-            className={`${percentage >= 50 ? "bg-green-500" : "bg-red-500"} h-full rounded-full transition-all duration-1000 ease-out`}
+            className={`${percentage >= 60 ? "bg-green-500" : "bg-red-500"} h-full rounded-full transition-all duration-1000 ease-out`}
             style={{ width: `${percentage}%` }}
           />
         </div>
@@ -70,7 +70,7 @@ export const ExamResults: React.FC<ExamResultsProps> = ({
           {hasNextSegment && (
             <button
               onClick={takeNextSegment}
-              className="w-full px-6 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all font-bold"
+              className="w-full px-6 py-4 bg-orange-600 text-white rounded-xl hover:bg-orange-700 shadow-lg shadow-orange-200 transition-all font-bold"
             >
               Start Next Segment
             </button>

@@ -20,7 +20,7 @@ export const QuizPage = () => {
         <p>We couldn't find a quiz for "{courseId}".</p>
         <button
           onClick={() => navigate("/")}
-          className="mt-4 text-blue-600 underline"
+          className="mt-4 text-orange-600 underline"
         >
           Back Home
         </button>
@@ -35,7 +35,7 @@ export const QuizPage = () => {
         <p>The quiz for {courseId} hasn't been uploaded yet.</p>
         <button
           onClick={() => navigate("/courses")}
-          className="mt-4 text-blue-600 underline"
+          className="mt-4 text-orange-600 underline"
         >
           Back to Courses
         </button>
