@@ -4,10 +4,12 @@ import { LandingPage } from "./pages/LandingPage";
 import { LevelPage } from "./pages/LevelPage";
 import { QuizPage } from "./components/QuizPage";
 import { FlashcardPage } from "./components/FlashCardPage";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Analytics />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/:level" element={<LevelPage />} />
