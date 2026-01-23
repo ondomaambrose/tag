@@ -13,15 +13,27 @@ import type { Question } from "../types"; // Ensure your types include 'true_fal
 interface FlashcardModeProps {
   questions: Question[];
   onExit: () => void;
+  courseCode: string;
 }
 
 export const FlashcardMode: React.FC<FlashcardModeProps> = ({
   questions,
   onExit,
+  courseCode,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    const saved = localStorage.getItem(`flashcard_idx_${courseCode}`);
+    return saved ? parseInt(saved, 10) : 0;
+  });
   const [isFlipped, setIsFlipped] = useState(false);
   const [direction, setDirection] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem(
+      `flashcard_idx_${courseCode}`,
+      currentIndex.toString(),
+    );
+  }, [currentIndex, courseCode]);
 
   // --- SAFETY CHECK ---
   if (!questions || questions.length === 0) {

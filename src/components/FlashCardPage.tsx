@@ -69,5 +69,11 @@ export const FlashcardPage = () => {
     );
   }
 
-  return <FlashcardMode questions={questions} onExit={() => navigate(-1)} />;
+  return (
+    <FlashcardMode
+      questions={questions}
+      onExit={() => navigate(-1)}
+      courseCode={courseCode || "default"}
+    />
+  );
 };

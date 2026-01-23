@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react"; // Import icons for mobile menu
+import { Menu, X } from "lucide-react";
 import type { Question } from "../types";
 import { ExamFooter } from "./ExamFooter";
 import { QuestionCard } from "./QuestionCard";
@@ -13,28 +13,61 @@ import { ExamReview } from "./ExamReview";
 interface ExamKitProps {
   questions: Question[];
   title?: string;
+  courseCode: string; // <--- ADDED: Required for unique storage key
 }
 
 export const ExamKit: React.FC<ExamKitProps> = ({
   questions,
   title = "Leadership Exam",
+  courseCode,
 }) => {
-  const [examStarted, setExamStarted] = useState(false);
+  // 1. DEFINE STORAGE KEY
+  const STORAGE_KEY = `exam_progress_${courseCode}`;
+
+  // 2. HELPER: Load from Storage safely
+  const loadState = (key: string, defaultVal: any) => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return defaultVal;
+      const parsed = JSON.parse(saved);
+      return parsed[key] !== undefined ? parsed[key] : defaultVal;
+    } catch (e) {
+      return defaultVal;
+    }
+  };
+
+  // 3. STATE (Initialized from Storage)
+  const [examStarted, setExamStarted] = useState<boolean>(() =>
+    loadState("examStarted", false),
+  );
+
   const [selectedSegment, setSelectedSegment] = useState<{
     start: number;
     end: number;
-  } | null>(null);
+  } | null>(() => loadState("selectedSegment", null));
 
   // Timer State
-  const [timer, setTimer] = useState<number | null>(null);
-  const [timeLeft, setTimeLeft] = useState<number | null>(null);
+  const [timer, setTimer] = useState<number | null>(() =>
+    loadState("timer", null),
+  );
+  const [timeLeft, setTimeLeft] = useState<number | null>(() =>
+    loadState("timeLeft", null),
+  );
 
   // Exam State
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState<Record<number, any>>({});
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    loadState("currentIndex", 0),
+  );
+
+  // NOTE: userAnswers and flaggedQuestions use string keys (IDs) now based on previous fixes
+  const [userAnswers, setUserAnswers] = useState<Record<string, any>>(() =>
+    loadState("userAnswers", {}),
+  );
+
   const [flaggedQuestions, setFlaggedQuestions] = useState<
-    Record<number, boolean>
-  >({});
+    Record<string, boolean>
+  >(() => loadState("flaggedQuestions", {}));
+
   const [showResults, setShowResults] = useState(false);
 
   // Mobile Sidebar State
@@ -43,11 +76,38 @@ export const ExamKit: React.FC<ExamKitProps> = ({
   // Review State
   const [isReviewing, setIsReviewing] = useState(false);
 
+  // Derived State
   const filteredQuestions = selectedSegment
     ? questions.slice(selectedSegment.start, selectedSegment.end + 1)
     : questions;
 
   const currentQuestion = filteredQuestions[currentIndex];
+
+  // 4. EFFECT: Save Progress on Change
+  useEffect(() => {
+    // Only save if the exam has actually started
+    if (examStarted) {
+      const stateToSave = {
+        examStarted,
+        selectedSegment,
+        timer,
+        timeLeft,
+        currentIndex,
+        userAnswers,
+        flaggedQuestions,
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
+    }
+  }, [
+    examStarted,
+    selectedSegment,
+    timer,
+    timeLeft,
+    currentIndex,
+    userAnswers,
+    flaggedQuestions,
+    STORAGE_KEY,
+  ]);
 
   // --- Timer Logic ---
   useEffect(() => {
@@ -58,6 +118,8 @@ export const ExamKit: React.FC<ExamKitProps> = ({
         if (prevTime <= 1) {
           clearInterval(interval);
           setShowResults(true);
+          // Optional: Clear storage here if you want auto-wipe on time up
+          // localStorage.removeItem(STORAGE_KEY);
           return 0;
         }
         return prevTime - 1;
@@ -97,6 +159,7 @@ export const ExamKit: React.FC<ExamKitProps> = ({
 
     if (window.confirm(message)) {
       setShowResults(true);
+      localStorage.removeItem(STORAGE_KEY); // Clear storage on manual submit
     }
   };
 
@@ -150,7 +213,8 @@ export const ExamKit: React.FC<ExamKitProps> = ({
           };
           if (!selectedSegment) setSelectedSegment(segment);
           setExamStarted(true);
-          if (timer) setTimeLeft(timer * 60);
+          // Only set timeLeft if it wasn't loaded from storage
+          if (timer && timeLeft === null) setTimeLeft(timer * 60);
         }}
       />
     );
@@ -176,6 +240,9 @@ export const ExamKit: React.FC<ExamKitProps> = ({
         questions={questions}
         onReview={() => setIsReviewing(true)}
         retakeSegment={() => {
+          // Clear Storage
+          localStorage.removeItem(STORAGE_KEY);
+
           setShowResults(false);
           setCurrentIndex(0);
           setUserAnswers({});
@@ -189,6 +256,10 @@ export const ExamKit: React.FC<ExamKitProps> = ({
             alert("You have completed all questions!");
             return;
           }
+
+          // Clear Storage before starting new segment
+          localStorage.removeItem(STORAGE_KEY);
+
           const newSeg = {
             start: newStart,
             end: Math.min(newStart + 49, questions.length - 1),

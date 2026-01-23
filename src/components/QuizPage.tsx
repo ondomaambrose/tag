@@ -47,7 +47,7 @@ export const QuizPage = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] text-gray-500">
-        <Loader2 className="w-10 h-10 animate-spin text-blue-600 mb-4" />
+        <Loader2 className="w-10 h-10 animate-spin text-orange-600 mb-4" />
         <p>Loading {courseId} Exam...</p>
       </div>
     );
@@ -75,5 +75,11 @@ export const QuizPage = () => {
   }
 
   // 5. Success: Render ExamKit
-  return <ExamKit questions={questions} title={`${courseId} Exam`} />;
+  return (
+    <ExamKit
+      questions={questions}
+      title={`${courseId} Exam`}
+      courseCode={courseCode || "default"}
+    />
+  );
 };
