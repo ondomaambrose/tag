@@ -6,20 +6,23 @@ import {
   X,
   Check,
   X as XIcon,
+  Loader2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { Question } from "../types"; // Ensure your types include 'true_false' etc.
+import type { Question } from "../types";
 
 interface FlashcardModeProps {
   questions: Question[];
   onExit: () => void;
   courseCode: string;
+  isLoading?: boolean;
 }
 
 export const FlashcardMode: React.FC<FlashcardModeProps> = ({
   questions,
   onExit,
   courseCode,
+  isLoading = false,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(() => {
     const saved = localStorage.getItem(`flashcard_idx_${courseCode}`);
@@ -35,14 +38,44 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
     );
   }, [currentIndex, courseCode]);
 
-  // --- SAFETY CHECK ---
+  useEffect(() => {
+    setIsFlipped(false);
+  }, [currentIndex]);
+
+  // --- 1. LOADING STATE ---
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+          className="text-orange-600 mb-4"
+        >
+          <Loader2 size={48} className="text-orange-600" />
+        </motion.div>
+        <p className="text-gray-500 font-medium animate-pulse">
+          Loading Flashcards...
+        </p>
+        <button
+          onClick={onExit}
+          className="mt-8 text-gray-400 hover:text-gray-600 text-sm underline"
+        >
+          Cancel
+        </button>
+      </div>
+    );
+  }
+
+  // --- 2. EMPTY STATE (No Questions) ---
   if (!questions || questions.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-        <div className="text-gray-500 font-medium">Loading Flashcards...</div>
+        <div className="text-gray-500 font-medium mb-4">
+          No flashcards found for this course.
+        </div>
         <button
           onClick={onExit}
-          className="mt-4 text-orange-600 hover:underline"
+          className="px-6 py-2 bg-white border border-orange-300 rounded-full text-orange-700 shadow-sm hover:bg-gray-50"
         >
           Go Back
         </button>
@@ -50,11 +83,8 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
     );
   }
 
+  // --- 3. MAIN CONTENT ---
   const currentQuestion = questions[currentIndex];
-
-  useEffect(() => {
-    setIsFlipped(false);
-  }, [currentIndex]);
 
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
@@ -70,13 +100,10 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
     }
   };
 
-  // --- RENDER ANSWER CONTENT ---
   const renderAnswerContent = (q: any) => {
-    // Normalize type string just in case
     const type = q.type?.toLowerCase() || "unknown";
 
     switch (type) {
-      // 1. TRUE / FALSE
       case "true_false":
         const isTrue = String(q.answer).toLowerCase() === "true";
         return (
@@ -91,7 +118,6 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
               {isTrue ? <Check size={32} /> : <XIcon size={32} />}
               {isTrue ? "TRUE" : "FALSE"}
             </div>
-            {/* Optional explanation if your data has it */}
             {q.explanation && (
               <p className="text-gray-500 text-center text-sm mt-4 max-w-xs">
                 {q.explanation}
@@ -100,11 +126,8 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
           </div>
         );
 
-      // 2. MCQ
       case "mcq":
-        // Convert 'A', 'B', etc. to index 0, 1...
         const optIndex = q.answer ? String(q.answer).charCodeAt(0) - 65 : -1;
-        // Grab the text of the correct option if available
         const optText =
           q.options && optIndex >= 0 && q.options[optIndex]
             ? q.options[optIndex]
@@ -123,7 +146,6 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
           </div>
         );
 
-      // 3. FILL IN THE BLANK (and default fallback)
       case "fill_in_the_blank":
       default:
         return (
@@ -132,7 +154,6 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
               Correct Answer
             </p>
             <div className="text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
-              {/* Sometimes fill-in answers are arrays, join them if so */}
               {Array.isArray(q.answer) ? q.answer.join(", ") : String(q.answer)}
             </div>
           </div>
@@ -141,7 +162,7 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 relative overflow-hidden">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4 relative overflow-hidden">
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-10">
         <motion.button
@@ -182,7 +203,7 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
             >
               {/* === FRONT (Question) === */}
               <div
-                className="absolute inset-0 backface-hidden bg-white rounded-3xl p-8 md:p-12 flex flex-col items-center justify-center border-2 border-gray-100"
+                className="absolute inset-0 backface-hidden bg-white rounded-3xl p-8 md:p-12 flex flex-col items-center justify-center border-2 border-orange-100"
                 style={{ backfaceVisibility: "hidden" }}
               >
                 <h3 className="text-xl md:text-3xl font-medium text-center text-gray-800 leading-relaxed">
@@ -233,7 +254,7 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsFlipped(!isFlipped)}
-          className="px-8 py-3 rounded-xl bg-orange-600 text-white font-bold shadow-lg shadow-orange-200 flex items-center gap-2"
+          className="px-8 py-3 rounded-xl bg-orange-600 text-white font-bold shadow-lg flex items-center gap-2"
         >
           <motion.div
             animate={{ rotate: isFlipped ? 180 : 0 }}

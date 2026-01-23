@@ -51,29 +51,12 @@ export const FlashcardPage = () => {
     fetchQuestions();
   }, [courseCode]);
 
-  if (loading) {
-    return <div className="p-10 text-center">Loading Questions...</div>;
-  }
-
-  if (questions.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <p className="text-gray-500 mb-4">No supported flashcards found.</p>
-        <button
-          onClick={() => navigate(-1)}
-          className="text-orange-600 underline"
-        >
-          Go Back
-        </button>
-      </div>
-    );
-  }
-
   return (
     <FlashcardMode
       questions={questions}
       onExit={() => navigate(-1)}
       courseCode={courseCode || "default"}
+      isLoading={loading}
     />
   );
 };
