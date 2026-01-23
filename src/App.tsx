@@ -4,7 +4,7 @@ import { LandingPage } from "./pages/LandingPage";
 import { LevelPage } from "./pages/LevelPage";
 import { QuizPage } from "./components/QuizPage";
 import { FlashcardPage } from "./components/FlashCardPage";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   return (
