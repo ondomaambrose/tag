@@ -75,5 +75,5 @@ export const QuizPage = () => {
   }
 
   // 5. Success: Render ExamKit
-  return <ExamKit questions={questions} title={`${courseId} Final Exam`} />;
+  return <ExamKit questions={questions} title={`${courseId} Exam`} />;
 };
