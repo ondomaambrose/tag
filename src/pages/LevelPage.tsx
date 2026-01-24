@@ -1,14 +1,26 @@
 import { useParams, Link } from "react-router-dom";
 import { courses } from "../data/courses";
 import { Header } from "../components/Header";
+import { PageNotFound } from "./404Page";
 import { motion } from "framer-motion";
 
 export function LevelPage() {
-  const { level } = useParams(); // e.g., "100-level"
-  const numericLevel = level?.split("-")[0] || ""; // "100"
+  const { level } = useParams(); // e.g., "100"
+
+  // 1. Define Valid Levels
+  const validLevels = ["100", "200", "300", "400", "500"];
+
+  // 2. SAFETY CHECK (Early Return)
+  // If level is missing OR not in the allowed list, stop here and show 404.
+  if (!level || !validLevels.includes(level)) {
+    return <PageNotFound />;
+  }
+
+  // 3. Logic for valid pages
+  // Note: Since we validated above, we know 'level' exists here.
+  const numericLevel = level.split("-")[0];
   const displayLevel = numericLevel.toUpperCase() + "-LEVEL";
 
-  // Filter courses by this level
   const levelCourses = courses.filter(
     (course) => course.level === numericLevel,
   );

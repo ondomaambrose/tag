@@ -12,14 +12,14 @@ export default function App() {
     <BrowserRouter>
       <Analytics />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route index element={<LandingPage />} />
         <Route path="/:level" element={<LevelPage />} />
         <Route path="/courses/:courseCode/quiz" element={<QuizPage />} />
         <Route
           path="/courses/:courseCode/flashcards"
           element={<FlashcardPage />}
         />
-        <Route path="*" element={<PageNotFound />}></Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );
