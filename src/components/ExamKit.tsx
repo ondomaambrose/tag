@@ -13,7 +13,7 @@ import { ExamReview } from "./ExamReview";
 interface ExamKitProps {
   questions: Question[];
   title?: string;
-  courseCode: string; // <--- ADDED: Required for unique storage key
+  courseCode: string; // Required for unique storage key
 }
 
 export const ExamKit: React.FC<ExamKitProps> = ({
@@ -21,10 +21,10 @@ export const ExamKit: React.FC<ExamKitProps> = ({
   title = "Leadership Exam",
   courseCode,
 }) => {
-  // 1. DEFINE STORAGE KEY
+  //DEFINE STORAGE KEY
   const STORAGE_KEY = `exam_progress_${courseCode}`;
 
-  // 2. HELPER: Load from Storage safely
+  // HELPER: Load from Storage safely
   const loadState = (key: string, defaultVal: any) => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -36,7 +36,7 @@ export const ExamKit: React.FC<ExamKitProps> = ({
     }
   };
 
-  // 3. STATE (Initialized from Storage)
+  // STATE (Initialized from Storage)
   const [examStarted, setExamStarted] = useState<boolean>(() =>
     loadState("examStarted", false),
   );
@@ -289,7 +289,7 @@ export const ExamKit: React.FC<ExamKitProps> = ({
         />
       </div>
 
-      {/* 2. MOBILE SIDEBAR DRAWER (Visible when toggled) */}
+      {/*MOBILE SIDEBAR DRAWER (Visible when toggled) */}
       {isMobileSidebarOpen && (
         <div className="fixed inset-0 z-50 flex md:hidden">
           {/* Backdrop */}
@@ -355,7 +355,7 @@ export const ExamKit: React.FC<ExamKitProps> = ({
         />
       </div>
 
-      {/* 3. MOBILE TOGGLE BUTTON (Floating Action Button) */}
+      {/*  MOBILE TOGGLE BUTTON (Floating Action Button) */}
       <button
         onClick={() => setIsMobileSidebarOpen(true)}
         className="md:hidden fixed bottom-6 right-6 z-40 bg-orange-600 text-white p-4 rounded-full shadow-lg hover:bg-orange-700 hover:scale-105 transition-all flex items-center justify-center"

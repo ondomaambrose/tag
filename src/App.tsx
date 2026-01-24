@@ -5,6 +5,7 @@ import { LevelPage } from "./pages/LevelPage";
 import { QuizPage } from "./components/QuizPage";
 import { FlashcardPage } from "./components/FlashCardPage";
 import { Analytics } from "@vercel/analytics/react";
+import { PageNotFound } from "./pages/404Page";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           path="/courses/:courseCode/flashcards"
           element={<FlashcardPage />}
         />
+        <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </BrowserRouter>
   );

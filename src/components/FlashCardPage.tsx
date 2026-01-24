@@ -28,9 +28,6 @@ export const FlashcardPage = () => {
         );
         const querySnapshot = await getDocs(subCollectionRef);
 
-        // --- THE FIX IS HERE ---
-        // We cast the data to 'unknown' first, then to 'Question[]'
-        // This tells TypeScript: "I know the IDs are strings, just let it pass."
         const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),

@@ -42,7 +42,7 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
     setIsFlipped(false);
   }, [currentIndex]);
 
-  // --- 1. LOADING STATE ---
+  // LOADING STATE
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4">
@@ -83,7 +83,7 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
     );
   }
 
-  // --- 3. MAIN CONTENT ---
+  // MAIN CONTENT
   const currentQuestion = questions[currentIndex];
 
   const handleNext = () => {
@@ -201,7 +201,7 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
                 damping: 20,
               }}
             >
-              {/* === FRONT (Question) === */}
+              {/*  FRONT (Question) */}
               <div
                 className="absolute inset-0 backface-hidden bg-white rounded-3xl p-8 md:p-12 flex flex-col items-center justify-center border-2 border-orange-100"
                 style={{ backfaceVisibility: "hidden" }}
@@ -218,7 +218,7 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
                 </motion.p>
               </div>
 
-              {/* === BACK (Answer) === */}
+              {/* BACK (Answer)  */}
               <div
                 className="absolute inset-0 backface-hidden bg-white rounded-3xl p-8 md:p-12 flex flex-col items-center justify-center border-2 border-orange-100 ring-4 ring-orange-50/30"
                 style={{
@@ -238,7 +238,7 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
         </AnimatePresence>
       </div>
 
-      {/* --- CONTROLS --- */}
+      {/*  CONTROLS  */}
       <div className="mt-8 flex items-center gap-6 z-10">
         <motion.button
           whileHover={{ scale: 1.1 }}
