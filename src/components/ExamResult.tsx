@@ -2,6 +2,7 @@
 import React from "react";
 import { RotateCcw, ArrowRight, BookOpen } from "lucide-react";
 import type { Question } from "../types";
+import { Link } from "react-router-dom";
 
 interface ExamResultsProps {
   score: number;
@@ -100,6 +101,14 @@ export const ExamResults: React.FC<ExamResultsProps> = ({
             Next Section
             <ArrowRight size={20} />
           </button>
+
+          <div className="flex items-center justify-center col-span-1 sm:col-span-2">
+            <Link to="/">
+              <button className="flex items-center justify-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-xl font-semibold hover:bg-orange-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 col-span-1 sm:col-span-2">
+                Back to Home
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
