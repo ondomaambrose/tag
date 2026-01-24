@@ -5,20 +5,23 @@ import { PageNotFound } from "./404Page";
 import { motion } from "framer-motion";
 
 export function LevelPage() {
-  const { level } = useParams(); // e.g., "100"
+  const { level } = useParams(); // e.g. "100" OR "100-level"
 
-  // 1. Define Valid Levels
+  // 1. SAFETY: Handle empty params immediately
+  if (!level) return <PageNotFound />;
+
+  // 2. NORMALIZE: Extract "100" from "100-level"
+  const numericLevel = level.split("-")[0];
+
+  // 3. VALIDATE: Check against the CLEAN number
   const validLevels = ["100", "200", "300", "400", "500"];
 
-  // 2. SAFETY CHECK (Early Return)
-  // If level is missing OR not in the allowed list, stop here and show 404.
-  if (!level || !validLevels.includes(level)) {
+  if (!validLevels.includes(numericLevel)) {
     return <PageNotFound />;
   }
 
-  // 3. Logic for valid pages
-  // Note: Since we validated above, we know 'level' exists here.
-  const numericLevel = level.split("-")[0];
+  // --- CONTENT RENDER (We know it is valid now) ---
+
   const displayLevel = numericLevel.toUpperCase() + "-LEVEL";
 
   const levelCourses = courses.filter(
