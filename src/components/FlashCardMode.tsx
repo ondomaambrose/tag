@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Question } from "../types";
+import { Link } from "react-router-dom";
 
 interface FlashcardModeProps {
   questions: Question[];
@@ -165,15 +166,18 @@ export const FlashcardMode: React.FC<FlashcardModeProps> = ({
     <div className="flex flex-col items-center justify-center min-h-screen bg-black p-4 relative overflow-hidden">
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-10">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onExit}
-          className="flex items-center gap-2 text-gray-600 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm hover:text-gray-900 transition-colors"
-        >
-          <X size={18} />
-          <span className="font-medium">Exit</span>
-        </motion.button>
+        <Link to="/">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onExit}
+            className="flex items-center gap-2 text-gray-600 bg-white/80 backdrop-blur px-4 py-2 rounded-full shadow-sm hover:text-gray-900 transition-colors"
+          >
+            <X size={18} />
+            <span className="font-medium">Exit</span>
+          </motion.button>
+        </Link>
+
         <div className="text-gray-500 font-mono text-sm bg-white/80 px-3 py-1 rounded-full shadow-sm">
           {currentIndex + 1} / {questions.length}
         </div>
