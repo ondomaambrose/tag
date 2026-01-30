@@ -6,15 +6,13 @@ import { QuizPage } from "./components/QuizPage";
 import { FlashcardPage } from "./components/FlashCardPage";
 import { Analytics } from "@vercel/analytics/react";
 import { PageNotFound } from "./pages/404Page";
-import { InstallPWA } from "./components/InstallPWA";
-import { OfflineManager } from "./components/OfflineManager";
+import { AppTutorial } from "./components/AppTutorial";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <AppTutorial />
       <Analytics />
-      <InstallPWA />
-      <OfflineManager />
       <Routes>
         <Route index element={<LandingPage />} />
         <Route path="/:level" element={<LevelPage />} />

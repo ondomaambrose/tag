@@ -1,13 +1,40 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import tag from "../assets/tag.webp";
 
 export function Header() {
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    // Listen for the browser's install event
+    const handler = (e: any) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    // If the app can be installed, STOP the link and show the prompt
+    if (installPrompt) {
+      e.preventDefault();
+      installPrompt.prompt();
+      installPrompt.userChoice.then((res: any) => {
+        if (res.outcome === "accepted") {
+          setInstallPrompt(null);
+        }
+      });
+    }
+  };
+
   return (
     <header className="bg-white text-orange-500 p-7 flex items-center flex-col">
-      <Link to="/">
+      <Link to="/" onClick={handleLogoClick}>
         <h1>
           <motion.img
+            id="header-logo" // Added ID for the tutorial
             src={tag}
             alt="Tag logo"
             className="h-20 w-auto"
