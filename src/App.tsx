@@ -7,8 +7,10 @@ import { FlashcardPage } from "./components/FlashCardPage";
 import { Analytics } from "@vercel/analytics/react";
 import { PageNotFound } from "./pages/404Page";
 import { AppTutorial } from "./components/AppTutorial";
+import { useBackgroundSync } from "./hooks/useBackgroundSync";
 
 export default function App() {
+  useBackgroundSync();
   return (
     <BrowserRouter>
       <AppTutorial />
