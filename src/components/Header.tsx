@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import tag from "../assets/tag.png";
+import tag from "../assets/tag.webp";
 
 export function Header() {
   return (
@@ -10,7 +10,8 @@ export function Header() {
           <motion.img
             src={tag}
             alt="Tag logo"
-            className="h-20"
+            className="h-20 w-auto"
+            fetchPriority="high"
             whileHover={{ scale: 1.1 }}
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
