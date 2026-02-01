@@ -19,7 +19,8 @@ export default defineConfig({
       manifest: {
         name: "TAG ALDC Study",
         short_name: "TAG",
-        description: "Stay Ahead Of the New ALDC Structure",
+        description:
+          "Stay Ahead Of the New ALDC Structure, access full functionality offline!",
         theme_color: "#f97316",
         background_color: "#ffffff",
         display: "standalone",

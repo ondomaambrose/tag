@@ -13,6 +13,7 @@ interface ExamResultsProps {
   retakeSegment: () => void;
   takeNextSegment: () => void;
   onReview: () => void; // <--- ADDED PROP
+  onCustomize: () => void;
 }
 
 export const ExamResults: React.FC<ExamResultsProps> = ({
@@ -22,6 +23,7 @@ export const ExamResults: React.FC<ExamResultsProps> = ({
   retakeSegment,
   takeNextSegment,
   onReview,
+  onCustomize,
 }) => {
   const percentage = Math.round((score / total) * 100);
   let gradeColor = "text-red-600";
@@ -92,6 +94,13 @@ export const ExamResults: React.FC<ExamResultsProps> = ({
           >
             <RotateCcw size={20} />
             Retake
+          </button>
+
+          <button
+            onClick={onCustomize}
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-orange-100 text-orange-700 border-2 border-orange-200 rounded-xl font-semibold hover:bg-orange-200 transition-all"
+          >
+            Exam Customization Page
           </button>
 
           <button

@@ -86,7 +86,7 @@ export const ExamKit: React.FC<ExamKitProps> = ({
   // 4. EFFECT: Save Progress on Change
   useEffect(() => {
     // Only save if the exam has actually started
-    if (examStarted) {
+    if (examStarted && !showResults) {
       const stateToSave = {
         examStarted,
         selectedSegment,
@@ -107,6 +107,7 @@ export const ExamKit: React.FC<ExamKitProps> = ({
     userAnswers,
     flaggedQuestions,
     STORAGE_KEY,
+    showResults,
   ]);
 
   // --- Timer Logic ---
@@ -242,12 +243,23 @@ export const ExamKit: React.FC<ExamKitProps> = ({
         retakeSegment={() => {
           // Clear Storage
           localStorage.removeItem(STORAGE_KEY);
+        }}
+        onCustomize={() => {
+          // 1. Clear storage so we don't resume an old session
+          localStorage.removeItem(STORAGE_KEY);
 
+          // 2. Reset everything to initial state
           setShowResults(false);
+          setExamStarted(false); // This triggers the SegmentSelection screen
+          setSelectedSegment(null);
           setCurrentIndex(0);
           setUserAnswers({});
           setFlaggedQuestions({});
-          if (timer) setTimeLeft(timer * 60);
+
+          // Optional: Keep the previous timer or reset it?
+          // Let's keep it (remove this line if you want to force them to type it again)
+          // setTimer(null);
+          setTimeLeft(null);
         }}
         takeNextSegment={() => {
           if (!selectedSegment) return;
