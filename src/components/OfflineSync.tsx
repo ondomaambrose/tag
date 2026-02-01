@@ -41,7 +41,7 @@ export const OfflineSync = () => {
         let questionCount = 0;
         const syncPromises = coursesSnapshot.docs.map(async (courseDoc) => {
           const qRef = collection(db, "courses", courseDoc.id, "questions");
-          const qSnap = await getDocs(qRef); // <--- This forces Firestore to cache the data
+          const qSnap = await getDocs(qRef);
           questionCount += qSnap.size;
         });
 

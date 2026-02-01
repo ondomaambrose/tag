@@ -8,12 +8,14 @@ import { Analytics } from "@vercel/analytics/react";
 import { PageNotFound } from "./pages/404Page";
 import { AppTutorial } from "./components/AppTutorial";
 import { useBackgroundSync } from "./hooks/useBackgroundSync";
+import { OfflineSync } from "./components/OfflineSync";
 
 export default function App() {
   useBackgroundSync();
   return (
     <BrowserRouter>
       <AppTutorial />
+      <OfflineSync />
       <Analytics />
       <Routes>
         <Route index element={<LandingPage />} />
