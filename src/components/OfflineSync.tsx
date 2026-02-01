@@ -78,12 +78,6 @@ export const OfflineSync = () => {
           <span className="text-gray-600">Ready for Offline ({count} Qs)</span>
         </>
       )}
-      {status === "error" && (
-        <>
-          <WifiOff className="text-red-500" size={16} />
-          <span className="text-gray-500">Sync Failed</span>
-        </>
-      )}
     </div>
   );
 };
