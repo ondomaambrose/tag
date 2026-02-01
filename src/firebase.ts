@@ -1,15 +1,12 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {
   initializeFirestore,
   persistentLocalCache,
   persistentMultipleTabManager,
+  CACHE_SIZE_UNLIMITED,
 } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC8UoHbSkMSw7gyrQyrIDo7gvcOKOHkrcQ",
   authDomain: "tag-aldc-6c405.firebaseapp.com",
@@ -20,12 +17,12 @@ const firebaseConfig = {
   measurementId: "G-S3B8F64LSB",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 const db = initializeFirestore(app, {
   localCache: persistentLocalCache({
     tabManager: persistentMultipleTabManager(),
+    cacheSizeBytes: CACHE_SIZE_UNLIMITED,
   }),
 });
 

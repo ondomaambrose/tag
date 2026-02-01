@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import tag from "../assets/tag.webp";
 
 export function Header() {
   const [installPrompt, setInstallPrompt] = useState<any>(null);
@@ -35,7 +34,7 @@ export function Header() {
         <h1>
           <motion.img
             id="header-logo"
-            src={tag}
+            src="/tag.webp"
             alt="Tag logo"
             className="h-20 w-auto"
             fetchPriority="high"
