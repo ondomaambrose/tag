@@ -42,6 +42,11 @@ export default defineConfig({
         enabled: true,
         type: "module",
       },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,png,ico,json}"],
+        navigateFallback: "/index.html",
+        navigateFallbackDenylist: [/^\/api/],
+      },
     }),
   ],
 });

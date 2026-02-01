@@ -34,7 +34,7 @@ export function Header() {
       <Link to="/" onClick={handleLogoClick}>
         <h1>
           <motion.img
-            id="header-logo" // Added ID for the tutorial
+            id="header-logo"
             src={tag}
             alt="Tag logo"
             className="h-20 w-auto"

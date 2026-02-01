@@ -5,46 +5,64 @@ import { track } from "@vercel/analytics/react";
 
 export const useBackgroundSync = () => {
   useEffect(() => {
-    const syncData = async () => {
-      // 1. Check if we are online
+    const syncEverything = async () => {
+      // 1. If Offline, stop immediately
       if (!navigator.onLine) return;
 
-      console.log("Silent Sync: Checking for data updates...");
+      console.log("🔄 Silent Sync: Starting comprehensive download...");
+      let downloadCount = 0;
 
       try {
-        // 2. Fetch all Courses
+        // --- PART A: SYNC 'COURSES' ---
+        // 1. Get all courses
         const coursesSnap = await getDocs(collection(db, "courses"));
-        const courseIds = coursesSnap.docs.map((doc) => doc.id);
+        downloadCount += coursesSnap.size;
 
-        // 3. Fetch Questions for each Course
-        // We run these in parallel for speed
+        // 2. Get sub-collections for each course (Questions AND Flashcards)
         await Promise.all(
-          courseIds.map(async (courseId) => {
-            await getDocs(collection(db, "courses", courseId, "questions"));
+          coursesSnap.docs.map(async (doc) => {
+            // Fetch Questions
+            const qSnap = await getDocs(
+              collection(db, "courses", doc.id, "questions"),
+            );
+            downloadCount += qSnap.size;
+
+            // Fetch Flashcards (if they exist as a separate sub-collection)
+            const fSnap = await getDocs(
+              collection(db, "courses", doc.id, "flashcards"),
+            );
+            downloadCount += fSnap.size;
           }),
         );
 
-        // 4. Mark success in storage
-        const today = new Date().toLocaleDateString(undefined, {
-          month: "numeric",
-          day: "numeric",
-          year: "2-digit",
-        });
+        // --- PART B: SYNC 'LEVELS' (Critical if you use LevelPage) ---
+        // We try this safely just in case 'levels' doesn't exist
+        try {
+          const levelsSnap = await getDocs(collection(db, "levels"));
+          downloadCount += levelsSnap.size;
 
+          for (const doc of levelsSnap.docs) {
+            const levelQSnap = await getDocs(
+              collection(db, "levels", doc.id, "questions"),
+            );
+            downloadCount += levelQSnap.size;
+          }
+        } catch (e) {
+          // Ignore if levels don't exist
+        }
+
+        // --- PART C: SUCCESS ---
+        console.log(`✅ Silent Sync Finished! Cached ${downloadCount} items.`);
+
+        const today = new Date().toLocaleDateString();
         localStorage.setItem("tag_offline_ready", "true");
         localStorage.setItem("tag_last_sync", today);
-
-        console.log(
-          `Silent Sync: Success. Updated data for ${courseIds.length} courses.`,
-        );
         track("Silent_Sync_Success");
       } catch (error) {
-        // If it fails silently, we just log it. The user doesn't need to know.
-        console.warn("Silent Sync: Failed (Network might be unstable)", error);
+        console.error("❌ Silent Sync Failed:", error);
       }
     };
 
-    // Run immediately on app mount
-    syncData();
-  }, []); // Empty dependency array = runs once every time the app opens/reloads
+    syncEverything();
+  }, []); // Runs once on app load
 };
