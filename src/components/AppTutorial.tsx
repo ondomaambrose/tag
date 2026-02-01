@@ -23,7 +23,7 @@ export const AppTutorial = () => {
           popover: {
             title: "Get the App",
             description: `
-              Click the header image or the download icon at the right side of your search bar 
+              Click the header image or the download icon at the right side of your search bar and get FULL OFFLINE FUNCTIONALITY!
               <img src="${installIcon}" style="height: 16px; width: auto; vertical-align: middle; display: inline-block; margin: 0 2px;" alt="download icon" /> 
               to download the website for offline use!
             `,
