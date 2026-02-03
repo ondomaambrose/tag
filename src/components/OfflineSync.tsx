@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import { WifiOff, CheckCircle, Loader2 } from "lucide-react";
 
 export const OfflineSync = () => {
   const [status, setStatus] = useState<"idle" | "syncing" | "done" | "error">(
@@ -64,7 +63,5 @@ export const OfflineSync = () => {
   // --- UI INDICATOR (Optional: Shows in bottom left) ---
   if (status === "idle") return null;
 
-  return (
-    null;
-  );
+  return null;
 };
