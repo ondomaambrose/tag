@@ -1,3 +1,5 @@
+// src/types.ts
+
 export type QuestionType =
   | "mcq"
   | "true_false"
@@ -23,12 +25,26 @@ export interface Question {
   id: number;
   type: QuestionType;
   question: string;
-  options: string[]; // For MCQ / Select
-  answer?: string | boolean; // For MCQ / T/F / Fill
-  correctAnswer?: string | boolean; // For backward compatibility
-  pairs?: QuestionPair[]; // For Matching
-  items?: string[]; // For DragDrop
-  targets?: string[]; // For DragDrop
-  answers?: string[]; // For DragDrop (Correct order)
-  fields?: QuestionField[]; // For Mixed
+
+  // --- OPTIONAL FIELDS (Depending on Type) ---
+
+  // Only for MCQ & Mixed-Select
+  options?: string[];
+
+  // For MCQ, T/F, Fill-in
+  answer?: string | boolean;
+
+  // Legacy support (optional)
+  correctAnswer?: string | boolean;
+
+  // Only for Matching
+  pairs?: QuestionPair[];
+
+  // Only for Drag & Drop
+  items?: string[]; // The draggable items
+  targets?: string[]; // The drop zones
+  answers?: string[]; // The correct answer key (array)
+
+  // Only for Mixed
+  fields?: QuestionField[];
 }

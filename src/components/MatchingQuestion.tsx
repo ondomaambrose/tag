@@ -1,5 +1,6 @@
 import type { Question } from "../types";
 import { useMemo } from "react";
+import { shuffleArray } from "../utils/shuffle";
 
 export const MatchingQuestion: React.FC<{
   q: Question;
@@ -8,11 +9,10 @@ export const MatchingQuestion: React.FC<{
 }> = ({ q, userAnswer, onAnswer }) => {
   const currentMatches = userAnswer || {};
 
-  // This useMemo is now safe because it belongs to this Component instance
   const shuffledOptions = useMemo(() => {
-    return [...(q.pairs || [])]
-      .map((p) => p.purpose)
-      .sort(() => Math.random() - 0.5);
+    // Extract purposes and shuffle them using fish yates shuffling algorithm
+    const purposes = (q.pairs || []).map((p) => p.purpose);
+    return shuffleArray(purposes);
   }, [q.id, q.pairs]);
 
   return (

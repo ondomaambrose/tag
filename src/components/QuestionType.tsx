@@ -1,5 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import type { Question } from "../types";
+import { useMemo } from "react";
+import { shuffleArray } from "../utils/shuffle";
 
 interface SubQuestionProps {
   q: Question; // Sub-components use 'q'
@@ -11,36 +13,45 @@ export const MCQQuestion = ({
   q,
   userAnswers,
   handleAnswer,
-}: SubQuestionProps) => (
-  <div className="space-y-3">
-    {q.options?.map((opt) => (
-      <button
-        key={opt}
-        onClick={() => handleAnswer(opt)}
-        className={`w-full p-5 text-left rounded-xl border-2 transition-all duration-200 group ${
-          userAnswers[q.id] === opt
-            ? "border-orange-600 bg-orange-50 text-orange-800 font-semibold shadow-inner"
-            : "border-gray-100 hover:border-orange-300 hover:bg-white bg-gray-50 text-gray-700"
-        }`}
-      >
-        <div className="flex items-center gap-3">
-          <div
-            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-              userAnswers[q.id] === opt
-                ? "border-orange-600"
-                : "border-gray-400 group-hover:border-orange-400"
-            }`}
-          >
-            {userAnswers[q.id] === opt && (
-              <div className="w-2.5 h-2.5 bg-orange-600 rounded-full" />
-            )}
+}: SubQuestionProps) => {
+  // 1. SHUFFLE OPTIONS HERE
+  // We rely on q.id. If the question ID changes, we re-shuffle.
+  const randomizedOptions = useMemo(() => {
+    return shuffleArray(q.options);
+  }, [q.id, q.options]);
+
+  return (
+    <div className="space-y-3">
+      {/* 2. Map over randomizedOptions instead of q.options */}
+      {randomizedOptions.map((opt) => (
+        <button
+          key={opt}
+          onClick={() => handleAnswer(opt)}
+          className={`w-full p-5 text-left rounded-xl border-2 transition-all duration-200 group ${
+            userAnswers[q.id] === opt
+              ? "border-orange-600 bg-orange-50 text-orange-800 font-semibold shadow-inner"
+              : "border-gray-100 hover:border-orange-300 hover:bg-white bg-gray-50 text-gray-700"
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                userAnswers[q.id] === opt
+                  ? "border-orange-600"
+                  : "border-gray-400 group-hover:border-orange-400"
+              }`}
+            >
+              {userAnswers[q.id] === opt && (
+                <div className="w-2.5 h-2.5 bg-orange-600 rounded-full" />
+              )}
+            </div>
+            <span className="text-lg">{opt}</span>
           </div>
-          {opt}
-        </div>
-      </button>
-    ))}
-  </div>
-);
+        </button>
+      ))}
+    </div>
+  );
+};
 
 export const TrueFalseQuestion = ({
   q,

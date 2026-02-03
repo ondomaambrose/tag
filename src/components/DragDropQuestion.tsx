@@ -1,5 +1,7 @@
 import type { Question } from "../types";
+import { useMemo } from "react";
 import { useState } from "react";
+import { shuffleArray } from "../utils/shuffle";
 
 export const DragDropQuestion: React.FC<{
   q: Question;
@@ -10,7 +12,11 @@ export const DragDropQuestion: React.FC<{
   // This useState is now safe
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-  const availableItems = (q.items || []).filter(
+  const shuffledSourceItems = useMemo(() => {
+    return shuffleArray(q.items);
+  }, [q.id, q.items]);
+
+  const availableItems = shuffledSourceItems.filter(
     (item) =>
       !Object.values(currentPlacement).includes(item) || item === selectedItem,
   );
