@@ -6,7 +6,6 @@ export const OfflineSync = () => {
   const [status, setStatus] = useState<"idle" | "syncing" | "done" | "error">(
     "idle",
   );
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const syncData = async () => {
@@ -46,9 +45,6 @@ export const OfflineSync = () => {
 
         await Promise.all(syncPromises);
 
-        // 5. Success!
-        console.log(`✅ Cached ${questionCount} questions for offline use.`);
-        setCount(questionCount);
         setStatus("done");
         sessionStorage.setItem("tag_data_synced", "true");
       } catch (err) {
