@@ -27,7 +27,7 @@ export const ExamResults: React.FC<ExamResultsProps> = ({
 }) => {
   const percentage = Math.round((score / total) * 100);
   let gradeColor = "text-red-600";
-  let gradeText = "Keep Practicing";
+  let gradeText = "Keep Reading🌚";
 
   if (percentage >= 80) {
     gradeColor = "text-green-600";
