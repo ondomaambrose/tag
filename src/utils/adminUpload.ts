@@ -1,21 +1,21 @@
-import { tmc211Questions } from "../data/questions"; // Make sure this path points to your updated file
+import { tmc411Questions } from "../data/questions"; // Make sure this path points to your updated file
 import { db } from "../firebase";
 import { writeBatch, doc } from "firebase/firestore";
 
-export const uploadTMC211 = async () => {
+export const uploadTMC411 = async () => {
   // CRITICAL FIX: Make sure this matches your database folder exactly (No space)
-  const COURSE_CODE = "TMC 211";
+  const COURSE_CODE = "TMC 311";
 
   if (
     !confirm(
-      `Ready to OVERWRITE questions for ${COURSE_CODE}? This will update ${tmc211Questions.length} questions.`,
+      `Ready to OVERWRITE questions for ${COURSE_CODE}? This will update ${tmc411Questions.length} questions.`,
     )
   )
     return;
 
   const batch = writeBatch(db);
 
-  tmc211Questions.forEach((q) => {
+  tmc411Questions.forEach((q) => {
     const docRef = doc(
       db,
       "courses",
@@ -28,5 +28,5 @@ export const uploadTMC211 = async () => {
   });
 
   await batch.commit();
-  alert(`✅ TMC511 Updated! (${tmc211Questions.length} questions rewritten)`);
+  alert(`✅ TMC511 Updated! (${tmc411Questions.length} questions rewritten)`);
 };
