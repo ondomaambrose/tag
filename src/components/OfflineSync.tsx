@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import type { Unsubscribe } from "firebase/firestore";
 import { db } from "../firebase";
 
 export const OfflineSync = () => {
-  const [status, setStatus] = useState<
-    "idle" | "syncing" | "listening" | "error"
-  >("idle");
+  const statusRef = useRef<"idle" | "syncing" | "listening" | "error">("idle");
 
   useEffect(() => {
     // Array to hold unsubscribe functions to stop listening when component unmounts
@@ -14,12 +12,12 @@ export const OfflineSync = () => {
 
     const startSync = async () => {
       if (!navigator.onLine) {
-        setStatus("idle");
+        statusRef.current = "idle";
         return;
       }
 
       try {
-        setStatus("syncing");
+        statusRef.current = "syncing";
         console.log("📡 Establishing Real-time Sync...");
 
         // 1. Get the list of courses first
@@ -28,7 +26,7 @@ export const OfflineSync = () => {
 
         if (coursesSnapshot.empty) {
           console.log("No courses found.");
-          setStatus("idle");
+          statusRef.current = "idle";
           return;
         }
 
@@ -62,10 +60,10 @@ export const OfflineSync = () => {
           unsubscribers.push(unsubscribe);
         });
 
-        setStatus("listening");
+        statusRef.current = "listening";
       } catch (err) {
         console.error("Master Sync failed:", err);
-        setStatus("error");
+        statusRef.current = "error";
       }
     };
 
