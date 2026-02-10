@@ -14,16 +14,14 @@ export function LevelSection() {
     <section className="w-full flex flex-col items-center gap-8 py-12 overflow-x-hidden">
       {/* Header text */}
       <motion.p
-        className="font-sans text-orange-500 text-2xl font-bold text-center"
+        className="font-sans text-orange-500 text-l font-bold text-center"
         initial={{ y: -50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }} // Animate when in viewport
         viewport={{ amount: 0.5 }} // Trigger once, when 50% visible
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        Stay Ahead Of The New ALDC Exam Structure
+        Select your Level and get quizzing
       </motion.p>
-
-      {/* Levels */}
 
       <motion.div
         className="w-full max-w-4xl mx-auto flex flex-col"
