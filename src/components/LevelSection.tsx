@@ -29,7 +29,7 @@ export function LevelSection() {
         viewport={{ amount: 0.5 }} // Trigger once, when 50% visible
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        Select your Level and get quizzing
+        Select Level
       </motion.p>
 
       <motion.div
