@@ -31,7 +31,7 @@ export function LevelSection() {
       >
         Select Level
       </motion.p>
-
+    
       <motion.div
         className="w-full max-w-4xl mx-auto flex flex-col"
         initial="hidden"
