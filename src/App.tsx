@@ -9,6 +9,7 @@ import { PageNotFound } from "./pages/404Page";
 import { AppTutorial } from "./components/AppTutorial";
 import { useBackgroundSync } from "./hooks/useBackgroundSync";
 import { OfflineSync } from "./components/OfflineSync";
+import { PwaTracker } from "./components/PwaTracker";
 
 export default function App() {
   useBackgroundSync();
@@ -16,6 +17,7 @@ export default function App() {
     <BrowserRouter>
       <AppTutorial />
       <OfflineSync />
+      <PwaTracker />
       <Analytics />
       <Routes>
         <Route index element={<LandingPage />} />
